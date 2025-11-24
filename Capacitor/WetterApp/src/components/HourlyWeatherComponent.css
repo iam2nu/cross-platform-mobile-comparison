@@ -1,0 +1,128 @@
+.hourly-container {
+    margin: 20px 0;
+}
+
+.hourly-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px 8px;
+}
+
+.hourly-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--ion-color-dark);
+    margin: 0;
+}
+
+.hourly-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 6px;
+    padding: 8px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.hourly-scroll::-webkit-scrollbar {
+    height: 4px;
+}
+
+.hourly-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.hourly-scroll::-webkit-scrollbar-thumb {
+    background: #4a90e2;
+    border-radius: 10px;
+}
+
+.hourly-card {
+    min-width: 90px;
+    max-width: 90px;
+    margin: 0;
+    background: white;
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
+}
+
+.hourly-card.current {
+    background: linear-gradient(135deg, #4a90e2 0%, #2563eb 100%);
+    border: 2px solid #1e40af;
+}
+
+.hourly-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.hourly-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 8px;
+    gap: 4px;
+}
+
+.hourly-time {
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.hourly-card.current .hourly-time {
+    color: white;
+}
+
+.hourly-icon {
+    width: 35px;
+    height: 35px;
+    margin: 4px 0;
+}
+
+.hourly-temp {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.hourly-card.current .hourly-temp {
+    color: white;
+}
+
+.hourly-precipitation {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-top: 4px;
+}
+
+.precip-icon {
+    font-size: 12px;
+    color: #2196f3;
+}
+
+.hourly-card.current .precip-icon {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.precip-text {
+    font-size: 11px;
+    margin: 0;
+    color: #2196f3;
+}
+
+.hourly-card.current .precip-text {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.empty-hourly {
+    text-align: center;
+    padding: 20px;
+}
+
+.empty-hourly p {
+    margin: 0;
+}

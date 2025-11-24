@@ -1,0 +1,7 @@
+{
+    "name": "WetterApp",
+    "integrations": {
+        "capacitor": {}
+    },
+    "type": "react"
+}

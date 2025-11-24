@@ -1,0 +1,57 @@
+{
+  "expo": {
+    "name": "autologbuch",
+    "slug": "autologbuch",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "autologbuch",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.autologbuch.app",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Diese App benötigt Ihren Standort, um Fahrten aufzuzeichnen.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Diese App benötigt Ihren Standort, um Fahrten im Hintergrund aufzuzeichnen.",
+        "UIBackgroundModes": [
+          "location"
+        ]
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "package": "com.autologbuch.app",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION"
+      ]
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Diese App benötigt Ihren Standort, um Fahrten aufzuzeichnen.",
+          "locationWhenInUsePermission": "Diese App benötigt Ihren Standort, um Fahrten aufzuzeichnen."
+        }
+      ],
+      "expo-sqlite"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "e9213555-7cf4-4fce-9cc2-ca10c5f46e23"
+      }
+    },
+    "owner": "rajadthu"
+  }
+}

@@ -1,0 +1,7 @@
+{
+    "name": "autologbuch-capacitor",
+    "integrations": {
+        "capacitor": {}
+    },
+    "type": "react"
+}

@@ -1,0 +1,170 @@
+/* Ionic Variables and Theming */
+/* For more info, please see: https://ionicframework.com/docs/theming/ */
+
+/** Blue Color Palette **/
+:root {
+    /** primary **/
+    --ion-color-primary: #2563eb;
+    --ion-color-primary-rgb: 37, 99, 235;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255, 255, 255;
+    --ion-color-primary-shade: #2156cf;
+    --ion-color-primary-tint: #3b72ed;
+
+    /** secondary **/
+    --ion-color-secondary: #4a90e2;
+    --ion-color-secondary-rgb: 74, 144, 226;
+    --ion-color-secondary-contrast: #ffffff;
+    --ion-color-secondary-contrast-rgb: 255, 255, 255;
+    --ion-color-secondary-shade: #417fc7;
+    --ion-color-secondary-tint: #5c9be5;
+
+    /** tertiary **/
+    --ion-color-tertiary: #1e40af;
+    --ion-color-tertiary-rgb: 30, 64, 175;
+    --ion-color-tertiary-contrast: #ffffff;
+    --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+    --ion-color-tertiary-shade: #1a389a;
+    --ion-color-tertiary-tint: #3553b7;
+
+    /** success **/
+    --ion-color-success: #10b981;
+    --ion-color-success-rgb: 16, 185, 129;
+    --ion-color-success-contrast: #ffffff;
+    --ion-color-success-contrast-rgb: 255, 255, 255;
+    --ion-color-success-shade: #0ea372;
+    --ion-color-success-tint: #28c18e;
+
+    /** warning **/
+    --ion-color-warning: #f59e0b;
+    --ion-color-warning-rgb: 245, 158, 11;
+    --ion-color-warning-contrast: #000000;
+    --ion-color-warning-contrast-rgb: 0, 0, 0;
+    --ion-color-warning-shade: #d88b0a;
+    --ion-color-warning-tint: #f6a823;
+
+    /** danger **/
+    --ion-color-danger: #ef4444;
+    --ion-color-danger-rgb: 239, 68, 68;
+    --ion-color-danger-contrast: #ffffff;
+    --ion-color-danger-contrast-rgb: 255, 255, 255;
+    --ion-color-danger-shade: #d23c3c;
+    --ion-color-danger-tint: #f15757;
+
+    /** dark **/
+    --ion-color-dark: #1e293b;
+    --ion-color-dark-rgb: 30, 41, 59;
+    --ion-color-dark-contrast: #ffffff;
+    --ion-color-dark-contrast-rgb: 255, 255, 255;
+    --ion-color-dark-shade: #1a2434;
+    --ion-color-dark-tint: #353e4f;
+
+    /** medium **/
+    --ion-color-medium: #64748b;
+    --ion-color-medium-rgb: 100, 116, 139;
+    --ion-color-medium-contrast: #ffffff;
+    --ion-color-medium-contrast-rgb: 255, 255, 255;
+    --ion-color-medium-shade: #58667a;
+    --ion-color-medium-tint: #748297;
+
+    /** light **/
+    --ion-color-light: #f1f5f9;
+    --ion-color-light-rgb: 241, 245, 249;
+    --ion-color-light-contrast: #000000;
+    --ion-color-light-contrast-rgb: 0, 0, 0;
+    --ion-color-light-shade: #d4d8db;
+    --ion-color-light-tint: #f2f6fa;
+}
+
+/* Additional styling for better appearance */
+* {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        'Helvetica Neue', Arial, sans-serif;
+}
+
+ion-toolbar {
+    --background: var(--ion-color-primary);
+    --color: white;
+}
+
+ion-header ion-toolbar {
+    --min-height: 56px;
+}
+
+ion-content {
+    --background: #f5f5f5;
+}
+
+/* Card styling */
+ion-card {
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 12px 0;
+}
+
+/* Button styling */
+ion-button {
+    --border-radius: 8px;
+    text-transform: none;
+    font-weight: 500;
+}
+
+/* Chip styling */
+ion-chip {
+    --background: #e3f2fd;
+    --color: var(--ion-color-primary);
+    border-radius: 16px;
+}
+
+/* Searchbar styling */
+ion-searchbar {
+    --background: #f5f5f5;
+    --border-radius: 8px;
+    --box-shadow: none;
+    --cancel-button-color: var(--ion-color-primary);
+}
+
+/* Spinner styling */
+ion-spinner {
+    color: var(--ion-color-primary);
+}
+
+/* Refresher styling */
+ion-refresher {
+    z-index: 100;
+}
+
+/* Smooth scrolling */
+.ion-page {
+    scroll-behavior: smooth;
+}
+
+/* Responsive font sizes */
+@media (max-width: 576px) {
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+    /*
+   * Dark Colors
+   * Uncomment if you want dark mode support
+   */
+
+    /* body {
+    --ion-color-primary: #3b82f6;
+    --ion-color-secondary: #60a5fa;
+    --ion-background-color: #1e1e1e;
+    --ion-text-color: #ffffff;
+  } */
+}
