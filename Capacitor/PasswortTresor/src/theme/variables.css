@@ -1,0 +1,97 @@
+:root {
+  /* Primary Colors - Blau wie in Flutter/Expo */
+  --ion-color-primary: #2196F3;
+  --ion-color-primary-rgb: 33, 150, 243;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #1e87d6;
+  --ion-color-primary-tint: #37a1f4;
+
+  /* Success - Grün */
+  --ion-color-success: #4CAF50;
+  --ion-color-success-rgb: 76, 175, 80;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #439a46;
+  --ion-color-success-tint: #5eb762;
+
+  /* Warning - Orange/Gelb */
+  --ion-color-warning: #FFC107;
+  --ion-color-warning-rgb: 255, 193, 7;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0, 0, 0;
+  --ion-color-warning-shade: #e0aa06;
+  --ion-color-warning-tint: #ffc720;
+
+  /* Danger - Rot */
+  --ion-color-danger: #f44336;
+  --ion-color-danger-rgb: 244, 67, 54;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #d73b30;
+  --ion-color-danger-tint: #f5564a;
+
+  /* Medium - Grau */
+  --ion-color-medium: #666666;
+  --ion-color-medium-rgb: 102, 102, 102;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #5a5a5a;
+  --ion-color-medium-tint: #757575;
+
+  /* Light */
+  --ion-color-light: #f5f5f5;
+  --ion-color-light-rgb: 245, 245, 245;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #d7d8da;
+  --ion-color-light-tint: #f6f6f6;
+
+  /* Background */
+  --ion-background-color: #ffffff;
+  --ion-background-color-rgb: 255, 255, 255;
+
+  --ion-text-color: #000000;
+  --ion-text-color-rgb: 0, 0, 0;
+
+  --ion-border-color: #e0e0e0;
+
+  /* Item Colors */
+  --ion-item-background: #ffffff;
+  --ion-item-border-color: #e0e0e0;
+
+  /* Toolbar */
+  --ion-toolbar-background: #2196F3;
+  --ion-toolbar-color: #ffffff;
+}
+
+/* iOS Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ion-color-primary: #2196F3;
+    --ion-color-primary-rgb: 33, 150, 243;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255, 255, 255;
+    --ion-color-primary-shade: #1e87d6;
+    --ion-color-primary-tint: #37a1f4;
+
+    --ion-background-color: #121212;
+    --ion-background-color-rgb: 18, 18, 18;
+
+    --ion-text-color: #ffffff;
+    --ion-text-color-rgb: 255, 255, 255;
+
+    --ion-border-color: #333333;
+
+    --ion-item-background: #1e1e1e;
+    --ion-item-border-color: #333333;
+
+    --ion-toolbar-background: #1e1e1e;
+    --ion-toolbar-color: #ffffff;
+
+    --ion-color-light: #1e1e1e;
+    --ion-color-light-rgb: 30, 30, 30;
+    --ion-color-light-contrast: #ffffff;
+    --ion-color-light-contrast-rgb: 255, 255, 255;
+  }
+}

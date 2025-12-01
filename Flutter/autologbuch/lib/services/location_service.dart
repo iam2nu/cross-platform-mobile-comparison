@@ -1,5 +1,6 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:geocoding/geocoding.dart';
 
 class LocationService {
   static final LocationService _instance = LocationService._internal();
@@ -69,7 +70,8 @@ class LocationService {
     double endLat,
     double endLng,
   ) {
-    return Geolocator.distanceBetween(startLat, startLng, endLat, endLng) / 1000;
+    return Geolocator.distanceBetween(startLat, startLng, endLat, endLng) /
+        1000;
   }
 
   // Prüfe ob Standort-Berechtigung erteilt ist
@@ -80,5 +82,22 @@ class LocationService {
     LocationPermission permission = await Geolocator.checkPermission();
     return permission == LocationPermission.whileInUse ||
         permission == LocationPermission.always;
+  }
+
+  // Konvertiere Koordinaten in eine lesbare Adresse
+  Future<String?> getAddressFromCoordinates(double lat, double lng) async {
+    try {
+      // Ruft die native Plattform-API auf (kein API-Key nötig!)
+      List<Placemark> placemarks = await placemarkFromCoordinates(lat, lng);
+
+      if (placemarks.isNotEmpty) {
+        Placemark place = placemarks.first;
+        return "${place.street} ${place.subThoroughfare ?? ''}, ${place.postalCode} ${place.locality}";
+      }
+      return null;
+    } catch (e) {
+      print("Fehler beim Geocoding: $e");
+      return null;
+    }
   }
 }

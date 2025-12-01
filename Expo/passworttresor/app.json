@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "passworttresor",
+    "name": "Passwort-Tresor",
     "slug": "passworttresor",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,7 +9,10 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "Wir benötigen Face ID für die sichere Authentifizierung beim Zugriff auf Ihre Passwörter."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -18,15 +21,24 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
+      "permissions": [
+        "USE_BIOMETRIC",
+        "USE_FINGERPRINT"
+      ],
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "output": "static",
+      "output": "single",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router",
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Wir benötigen Face ID für die sichere Authentifizierung beim Zugriff auf Ihre Passwörter."
+        }
+      ],
       [
         "expo-splash-screen",
         {
@@ -40,12 +52,7 @@
         }
       ]
     ],
-    "experiments": {
-      "typedRoutes": true,
-      "reactCompiler": true
-    },
     "extra": {
-      "router": {},
       "eas": {
         "projectId": "f838f7df-7c51-44f5-bc53-070601bae000"
       }

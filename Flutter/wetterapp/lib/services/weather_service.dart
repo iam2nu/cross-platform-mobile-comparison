@@ -5,7 +5,6 @@ import '../models/weather_forecast.dart';
 import '../models/hourly_weather.dart';
 
 class WeatherService {
-  //TODO: Put it in env
   static const String _apiKey = 'API_KEY';
   static const String _baseUrl = 'https://api.openweathermap.org/data/2.5';
 

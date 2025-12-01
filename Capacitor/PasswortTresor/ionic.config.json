@@ -1,0 +1,7 @@
+{
+  "name": "Passwort-Tresor",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
