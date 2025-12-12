@@ -74,14 +74,27 @@ Capacitor/WetterApp/
 - Für Android: Android Studio & JDK 17
 - Für iOS: Xcode (nur auf macOS)
 
-### Schritt 1: Dependencies installieren
+### Schritt 1: Environment Variables einrichten
+
+Kopiere `.env.example` zu `.env` und trage deinen API-Key ein:
 
 ```powershell
 cd Capacitor/WetterApp
+copy .env.example .env
+```
+
+Bearbeite `.env` und trage deinen OpenWeatherMap API-Key ein:
+```
+VITE_OPENWEATHER_API_KEY=dein_api_key_hier
+```
+
+### Schritt 2: Dependencies installieren
+
+```powershell
 npm install
 ```
 
-### Schritt 2: Development Server starten
+### Schritt 3: Development Server starten
 
 ```powershell
 npm run dev
@@ -89,7 +102,7 @@ npm run dev
 
 Die App ist nun unter `http://localhost:3000` erreichbar.
 
-### Schritt 3: Build für Produktion
+### Schritt 4: Build für Produktion
 
 ```powershell
 npm run build
@@ -157,10 +170,15 @@ npx cap open ios
 Die App verwendet die **OpenWeatherMap API** für Wetterdaten.
 
 ### API-Key
-Der API-Key ist in `src/services/weatherService.ts` definiert:
-```typescript
-const API_KEY = '263ea31dffaabd18f22500019c36e755';
+Der API-Key wird sicher über Environment Variables geladen:
+1. Registriere dich bei [OpenWeatherMap](https://openweathermap.org/api)
+2. Kopiere `.env.example` zu `.env`
+3. Trage deinen API-Key in die `.env` Datei ein
+```env
+VITE_OPENWEATHER_API_KEY=dein_api_key_hier
 ```
+
+**Wichtig**: Die `.env` Datei ist in `.gitignore` und wird nicht ins Repository committed!
 
 ### API Endpoints
 
@@ -283,9 +301,11 @@ TypeScript Interfaces für Type-Safety:
 
 ## 🔐 Sicherheit
 
-- API-Key sollte in Produktion über Environment Variables verwaltet werden
-- HTTPS für alle API-Calls
-- Input-Validierung bei Stadt-Suche
+- ✅ API-Key wird über Environment Variables verwaltet (`.env` Datei)
+- ✅ `.env` ist in `.gitignore` und wird nicht committed
+- ✅ HTTPS für alle API-Calls
+- ✅ Input-Validierung bei Stadt-Suche
+- ⚠️ Für Production Builds: API-Key über CI/CD Pipeline setzen
 
 ## 🌍 Internationalisierung
 
@@ -335,11 +355,15 @@ Mögliche Erweiterungen:
 ## 🚀 Quick Start Zusammenfassung
 
 ```powershell
-# 1. Installation
+# 1. Environment Setup
 cd Capacitor/WetterApp
+copy .env.example .env
+# Bearbeite .env und trage deinen API-Key ein
+
+# 2. Installation
 npm install
 
-# 2. Development starten
+# 3. Development starten
 npm run dev
 
 # 3. Für Android bauen

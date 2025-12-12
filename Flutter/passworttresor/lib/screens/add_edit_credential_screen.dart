@@ -19,6 +19,7 @@ class _AddEditCredentialScreenState extends State<AddEditCredentialScreen> {
   final _titleController = TextEditingController();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _urlController = TextEditingController();
   final _notesController = TextEditingController();
   final _storageService = SecureStorageService();
   final _passwordGenerator = PasswordGeneratorService();
@@ -33,6 +34,7 @@ class _AddEditCredentialScreenState extends State<AddEditCredentialScreen> {
       _titleController.text = widget.credential!.title;
       _usernameController.text = widget.credential!.username;
       _passwordController.text = widget.credential!.password;
+      _urlController.text = widget.credential!.url ?? '';
       _notesController.text = widget.credential!.notes ?? '';
       _passwordStrength = _passwordGenerator.checkPasswordStrength(widget.credential!.password);
     }
@@ -44,6 +46,7 @@ class _AddEditCredentialScreenState extends State<AddEditCredentialScreen> {
     _titleController.dispose();
     _usernameController.dispose();
     _passwordController.dispose();
+    _urlController.dispose();
     _notesController.dispose();
     super.dispose();
   }
@@ -134,6 +137,7 @@ class _AddEditCredentialScreenState extends State<AddEditCredentialScreen> {
       password: _passwordController.text,
       createdAt: widget.credential?.createdAt ?? DateTime.now(),
       modifiedAt: widget.credential != null ? DateTime.now() : null,
+      url: _urlController.text.isEmpty ? null : _urlController.text,
       notes: _notesController.text.isEmpty ? null : _notesController.text,
       isFavorite: widget.credential?.isFavorite ?? false,
       passwordHistory: updatedPasswordHistory,
@@ -270,6 +274,17 @@ class _AddEditCredentialScreenState extends State<AddEditCredentialScreen> {
                     onPressed: _showPasswordHistory,
                   ),
                 ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: _urlController,
+                decoration: const InputDecoration(
+                  labelText: 'URL (optional)',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.link),
+                  hintText: 'https://...',
+                ),
+                keyboardType: TextInputType.url,
+              ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: _notesController,

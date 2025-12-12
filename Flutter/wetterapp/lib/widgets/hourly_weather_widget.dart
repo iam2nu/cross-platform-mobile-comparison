@@ -21,7 +21,7 @@ class HourlyWeatherWidget extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Center(
             child: Text(
-              'Keine stündlichen Daten für diesen Tag verfügbar',
+              'Keine Vorhersagedaten für diesen Tag verfügbar',
               style: TextStyle(color: Colors.grey.shade600),
             ),
           ),
@@ -39,7 +39,7 @@ class HourlyWeatherWidget extends StatelessWidget {
               Icon(Icons.access_time, color: Colors.blue.shade700),
               const SizedBox(width: 8),
               Text(
-                'Stündliche Vorhersage - ${_formatDate(selectedDate)}',
+                '3-Stunden-Vorhersage - ${_formatDate(selectedDate)}',
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,

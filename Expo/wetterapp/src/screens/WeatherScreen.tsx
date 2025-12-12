@@ -114,7 +114,7 @@ export const WeatherScreen: React.FC = () => {
 
                 {/* Current Weather */}
                 {!isLoading && currentWeather && (
-                    <View style={styles.section}>
+                    <View style={[styles.section, styles.weatherSection]}>
                         <CurrentWeatherWidget weather={currentWeather} />
                     </View>
                 )}
@@ -186,6 +186,9 @@ const styles = StyleSheet.create({
     },
     section: {
         marginBottom: theme.spacing.lg,
+    },
+    weatherSection: {
+        marginTop: theme.spacing.md,
     },
     errorContainer: {
         backgroundColor: theme.colors.errorLight,

@@ -99,7 +99,6 @@ Capacitor/WetterApp/
 ## 🔌 API
 
 - **Provider**: OpenWeatherMap
-- **API-Key**: `263ea31dffaabd18f22500019c36e755`
 - **Endpoints**: Current Weather, 5-Day Forecast
 
 ## 🐛 Troubleshooting

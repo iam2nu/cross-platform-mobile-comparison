@@ -132,6 +132,21 @@ export default function CredentialDetailModal({
               </View>
             </View>
 
+            {credential.url && (
+              <View style={styles.field}>
+                <Text style={styles.label}>URL</Text>
+                <View style={styles.valueContainer}>
+                  <Text style={styles.value}>{credential.url}</Text>
+                  <TouchableOpacity
+                    onPress={() => copyToClipboard(credential.url!, 'URL')}
+                    style={styles.copyButton}
+                  >
+                    <Ionicons name="copy-outline" size={20} color="#2196F3" />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            )}
+
             {credential.notes && (
               <View style={styles.field}>
                 <Text style={styles.label}>Notizen</Text>

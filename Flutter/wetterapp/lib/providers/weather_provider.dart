@@ -79,7 +79,7 @@ class WeatherProvider with ChangeNotifier {
       }
     } catch (e) {
       print('Error loading hourly weather: $e'); // Debug
-      _error = 'Fehler beim Laden der stündlichen Wetterdaten: ${e.toString()}';
+      _error = 'Fehler beim Laden der Wetterdaten: ${e.toString()}';
       _hourlyWeather = [];
     } finally {
       _isLoadingHourly = false;

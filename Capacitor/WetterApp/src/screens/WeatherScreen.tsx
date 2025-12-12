@@ -21,6 +21,7 @@ import CurrentWeather from '../components/CurrentWeather';
 import WeatherForecastComponent from '../components/WeatherForecastComponent';
 import HourlyWeatherComponent from '../components/HourlyWeatherComponent';
 import SearchBar from '../components/SearchBar';
+import PopularCities from '../components/PopularCities';
 import './WeatherScreen.css';
 
 const WeatherScreen: React.FC = () => {
@@ -149,6 +150,9 @@ const WeatherScreen: React.FC = () => {
                             </IonCardContent>
                         </IonCard>
                     )}
+
+                    {/* Popular Cities - ganz unten */}
+                    <PopularCities onCitySelect={handleSearch} />
                 </div>
             </IonContent>
         </IonPage>

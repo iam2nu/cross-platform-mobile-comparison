@@ -119,12 +119,14 @@ const styles = StyleSheet.create({
         marginVertical: theme.spacing.xs,
         justifyContent: 'space-evenly',
         alignItems: 'center',
+        borderWidth: 2,
+        borderColor: 'transparent',
         ...theme.shadows.small,
     },
     forecastCardSelected: {
         backgroundColor: theme.colors.selectedBlue,
-        borderWidth: 2,
         borderColor: theme.colors.primary,
+        ...theme.shadows.medium,
     },
     dayText: {
         fontSize: theme.fontSize.md,

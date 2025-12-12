@@ -17,6 +17,7 @@ class MainApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Auto-Logbuch',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,

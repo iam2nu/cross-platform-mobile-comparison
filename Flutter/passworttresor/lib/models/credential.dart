@@ -5,6 +5,7 @@ class Credential {
   final String password;
   final DateTime createdAt;
   final DateTime? modifiedAt;
+  final String? url;
   final String? notes;
   final bool isFavorite;
   final List<String> passwordHistory;
@@ -16,6 +17,7 @@ class Credential {
     required this.password,
     required this.createdAt,
     this.modifiedAt,
+    this.url,
     this.notes,
     this.isFavorite = false,
     this.passwordHistory = const [],
@@ -28,6 +30,7 @@ class Credential {
     'password': password,
     'createdAt': createdAt.toIso8601String(),
     'modifiedAt': modifiedAt?.toIso8601String(),
+    'url': url,
     'notes': notes,
     'isFavorite': isFavorite,
     'passwordHistory': passwordHistory,
@@ -42,6 +45,7 @@ class Credential {
     modifiedAt: json['modifiedAt'] != null
         ? DateTime.parse(json['modifiedAt'])
         : null,
+    url: json['url'],
     notes: json['notes'],
     isFavorite: json['isFavorite'] ?? false,
     passwordHistory: json['passwordHistory'] != null 
@@ -56,6 +60,7 @@ class Credential {
     String? password,
     DateTime? createdAt,
     DateTime? modifiedAt,
+    String? url,
     String? notes,
     bool? isFavorite,
     List<String>? passwordHistory,
@@ -66,6 +71,7 @@ class Credential {
     password: password ?? this.password,
     createdAt: createdAt ?? this.createdAt,
     modifiedAt: modifiedAt ?? this.modifiedAt,
+    url: url ?? this.url,
     notes: notes ?? this.notes,
     isFavorite: isFavorite ?? this.isFavorite,
     passwordHistory: passwordHistory ?? this.passwordHistory,

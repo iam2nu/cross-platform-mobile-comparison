@@ -13,9 +13,10 @@ import PasswordGeneratorService from '../services/PasswordGeneratorService';
 interface CredentialModalProps {
   credential: Credential | null;
   onDismiss: () => void;
+  isOpen: boolean;
 }
 
-const CredentialModal: React.FC<CredentialModalProps> = ({ credential, onDismiss }) => {
+const CredentialModal: React.FC<CredentialModalProps> = ({ credential, onDismiss, isOpen }) => {
   const [title, setTitle] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -23,18 +24,28 @@ const CredentialModal: React.FC<CredentialModalProps> = ({ credential, onDismiss
   const [notes, setNotes] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<any>({});
-  const [showGenerator, setShowGenerator] = useState(false);
   const [present] = useIonToast();
 
   useEffect(() => {
-    if (credential) {
-      setTitle(credential.title);
-      setUsername(credential.username);
-      setPassword(credential.password);
-      setUrl(credential.url || '');
-      setNotes(credential.notes || '');
+    if (isOpen) {
+      if (credential) {
+        setTitle(credential.title);
+        setUsername(credential.username);
+        setPassword(credential.password);
+        setUrl(credential.url || '');
+        setNotes(credential.notes || '');
+      } else {
+        // Reset for new entry
+        setTitle('');
+        setUsername('');
+        setPassword('');
+        setUrl('');
+        setNotes('');
+        setErrors({});
+        setShowPassword(false);
+      }
     }
-  }, [credential]);
+  }, [credential, isOpen]);
 
   const validate = () => {
     const newErrors: any = {};
@@ -77,7 +88,6 @@ const CredentialModal: React.FC<CredentialModalProps> = ({ credential, onDismiss
       includeSymbols: true
     });
     setPassword(generated);
-    setShowGenerator(false);
   };
 
   const copyToClipboard = async (text: string, label: string) => {
@@ -92,7 +102,7 @@ const CredentialModal: React.FC<CredentialModalProps> = ({ credential, onDismiss
   const strength = PasswordGeneratorService.calculateStrength(password);
 
   return (
-    <IonModal isOpen={true} onDidDismiss={onDismiss}>
+    <IonModal isOpen={isOpen} onDidDismiss={onDismiss}>
       <IonHeader>
         <IonToolbar color="primary">
           <IonButtons slot="start">

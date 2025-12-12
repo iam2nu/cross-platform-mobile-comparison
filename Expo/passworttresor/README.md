@@ -1,50 +1,264 @@
-# Welcome to your Expo app 👋
+# PasswortTresor - Expo React Native
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Ein sicherer Passwort-Manager mit biometrischer Authentifizierung, entwickelt mit Expo und React Native.
 
-## Get started
+## 📱 Features
 
-1. Install dependencies
+- **Master-Passwort Setup**: Sicheres Hauptpasswort beim ersten Start
+- **Biometrische Authentifizierung**: Face ID, Touch ID, Fingerabdruck
+- **Verschlüsselte Speicherung**: Expo Secure Store (Keychain/KeyStore)
+- **Passwort-Verwaltung**: Erstellen, Bearbeiten, Löschen von Einträgen
+- **Passwort-Generator**: Konfigurierbar (Länge, Zeichentypen)
+- **Passwort-Stärke**: Visueller Indikator mit Farbcodierung
+- **Favoriten-System**: Wichtige Einträge markieren
+- **Passwort-Historie**: Letzte 5 Passwörter pro Eintrag
+- **Suche**: Durchsuchen von Titel und Username
+- **Export/Import**: Backup und Restore als JSON
+- **Auto-Lock**: Automatische Sperre nach Inaktivität
+- **Kopieren**: Username und Passwort in Zwischenablage
 
-   ```bash
-   npm install
-   ```
+## 🛠️ Technologie-Stack
 
-2. Start the app
+- **Framework**: Expo SDK 54
+- **Sprache**: TypeScript 5.9
+- **UI**: React Native Components
+- **Storage**: Expo Secure Store
+- **Biometrie**: Expo Local Authentication
+- **Crypto**: Expo Crypto (SHA-256)
+- **Clipboard**: Expo Clipboard
+- **State**: React Hooks
 
-   ```bash
-   npx expo start
-   ```
+## 🚀 Installation & Start
 
-In the output, you'll find options to open the app in a
+### Voraussetzungen
+- Node.js (v18+)
+- Expo Go App (für Testing) oder
+- Development Build (für biometrische Auth)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+### Befehle
 ```bash
-npm run reset-project
+# Dependencies installieren
+npm install
+
+# Development Server starten
+npm start
+
+# Auf spezifischer Plattform
+npm run android    # Android
+npm run ios        # iOS (nur macOS)
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+**Hinweis**: Biometrische Authentifizierung funktioniert nur in Development/Production Builds, nicht in Expo Go.
 
-## Learn more
+## 📁 Projektstruktur
 
-To learn more about developing your project with Expo, look at the following resources:
+```
+src/
+├── models/                   # TypeScript Interfaces
+│   ├── Credential.ts
+│   └── Settings.ts
+├── services/                 # Business Logic
+│   ├── StorageService.ts
+│   ├── CryptoService.ts
+│   ├── PasswordGeneratorService.ts
+│   └── BiometricService.ts
+├── screens/                  # Screen Components
+│   ├── SetupScreen.tsx
+│   ├── AuthScreen.tsx
+│   └── HomeScreen.tsx
+├── components/               # UI Components
+│   ├── CredentialModal.tsx
+│   ├── PasswordGeneratorModal.tsx
+│   ├── PasswordHistoryModal.tsx
+│   └── SettingsModal.tsx
+└── theme/                    # Design System
+    └── theme.ts
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 🎯 Hauptfunktionen
 
-## Join the community
+### Authentifizierung
+- **Setup**: Master-Passwort erstellen beim ersten Start
+- **Login**: Mit Master-Passwort oder Biometrie
+- **Auto-Lock**: Automatische Sperre nach 5 Minuten Inaktivität
 
-Join our community of developers creating universal apps.
+### Credential-Verwaltung
+- **Erstellen**: Neuen Eintrag mit Titel, Username, Passwort, Notizen
+- **Bearbeiten**: Einträge nachträglich ändern
+- **Löschen**: Einträge entfernen mit Bestätigung
+- **Suchen**: Nach Titel oder Username suchen
+- **Favoriten**: Wichtige Einträge oben anzeigen
+- **Kopieren**: Username und Passwort mit einem Tap kopieren
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Passwort-Generator
+- **Länge**: 8-32 Zeichen
+- **Optionen**:
+  - Großbuchstaben (A-Z)
+  - Kleinbuchstaben (a-z)
+  - Zahlen (0-9)
+  - Symbole (!@#$%^&*)
+- **Passwort-Stärke**: Live-Anzeige während Generierung
+- **Kryptographisch sicher**: Expo Crypto für Zufallszahlen
+
+### Passwort-Historie
+- **Automatische Speicherung**: Letzte 5 Passwörter pro Eintrag
+- **Wiederherstellung**: Altes Passwort wiederverwenden
+- **Anzeige**: Historie in separatem Modal
+
+### Export/Import
+- **Export**: Alle Daten als JSON exportieren
+- **Import**: Daten aus JSON wiederherstellen
+- **Format**: Strukturiertes JSON mit Versionierung
+
+## 📦 Wichtige Dependencies
+
+```json
+{
+  "expo": "~54.0.23",
+  "react-native": "0.81.5",
+  "expo-secure-store": "^15.0.7",
+  "expo-local-authentication": "^17.0.7",
+  "expo-crypto": "^15.0.7",
+  "expo-clipboard": "^8.0.7",
+  "typescript": "~5.9.2"
+}
+```
+
+## 🔐 Sicherheit
+
+### Implementierte Maßnahmen
+- ✅ SHA-256 Passwort-Hashing (Master-Passwort)
+- ✅ Verschlüsselte Speicherung (Expo Secure Store)
+- ✅ Biometrische Authentifizierung (native)
+- ✅ Auto-Lock nach Inaktivität
+- ✅ Keine Cloud-Speicherung
+- ✅ Keine Logs mit sensiblen Daten
+- ✅ Kryptographisch sichere Zufallszahlen
+
+### Sicherheitshinweise
+⚠️ **Wichtig**:
+- Master-Passwort gut merken (kein Recovery!)
+- Export-Daten sicher aufbewahren
+- App auf aktuellem Stand halten
+- Biometrische Daten bleiben auf Gerät
+
+## 🎨 UI/UX
+
+- **Farbschema**: Blau (#2196F3) als Primary Color
+- **Material Design** inspirierte Komponenten
+- **Modal Dialoge** für Aktionen
+- **Loading States** während Operationen
+- **Error Handling** mit Fehlermeldungen
+- **Passwort-Stärke-Indicator** mit Farben
+- **Smooth Animationen**
+- **Responsive Design**
+
+## 🔧 Entwicklung
+
+### Development Build erstellen
+Für biometrische Auth benötigt:
+```bash
+# Development Client installieren
+npx expo install expo-dev-client
+
+# Build erstellen
+eas build --profile development --platform android
+eas build --profile development --platform ios
+```
+
+### Hot Reload
+- Änderungen werden automatisch aktualisiert
+- Shake-Geste für Dev-Menu
+
+### TypeScript Check
+```bash
+npx tsc --noEmit
+```
+
+## 📱 Build & Deployment
+
+### Production Build
+```bash
+eas build --platform android
+eas build --platform ios
+```
+
+### App Store Submission
+```bash
+eas submit --platform android
+eas submit --platform ios
+```
+
+## 🐛 Troubleshooting
+
+### "Biometrie funktioniert nicht"
+- Development Build erstellen (nicht Expo Go)
+- Biometrie auf Gerät aktiviert?
+- Berechtigungen in app.json konfiguriert?
+
+### "Daten nach Neuinstallation weg"
+- Export vor Deinstallation erstellen!
+- Secure Store wird bei Deinstallation gelöscht
+
+### "Cannot connect to Metro"
+```bash
+npx expo start -c
+```
+
+### Dependencies fehlen
+```bash
+rm -rf node_modules
+npm install
+npx expo start -c
+```
+
+## 💡 Verwendung
+
+### Erste Schritte
+1. App starten
+2. Master-Passwort erstellen (min. 6 Zeichen)
+3. Ersten Eintrag hinzufügen (`+` Button)
+4. Passwort-Generator nutzen (✨ Icon)
+5. Biometrische Auth aktivieren (beim nächsten Login)
+
+### Passwort-Generator
+1. In "Neuer Eintrag" oder "Bearbeiten"
+2. ✨ Icon im Passwort-Feld antippen
+3. Optionen anpassen
+4. "Verwenden" antippen
+
+### Export/Import
+1. **Export**: Menü → Exportieren → JSON kopieren
+2. **Import**: Menü → Importieren → JSON einfügen → Bestätigen
+
+## 📚 Weitere Dokumentation
+
+- [Expo Docs](https://docs.expo.dev)
+- [Expo Secure Store](https://docs.expo.dev/versions/latest/sdk/securestore/)
+- [Expo Local Authentication](https://docs.expo.dev/versions/latest/sdk/local-authentication/)
+- [Expo Crypto](https://docs.expo.dev/versions/latest/sdk/crypto/)
+
+## 🎯 Mögliche Erweiterungen
+
+- Password Breach Check (Have I Been Pwned API)
+- 2FA Token Generator (TOTP)
+- Sichere Notizen
+- Datei-Anhänge
+- Cloud-Backup (verschlüsselt)
+- Browser-Extension
+- Dark Mode
+- Mehrsprachigkeit
+
+## 🆚 Vergleich mit anderen Frameworks
+
+| Feature | Expo | Flutter | Capacitor |
+|---------|------|---------|-----------|
+| Biometrische Auth | ✅ | ✅ | ⚠️ Plugin |
+| Verschlüsselte Storage | ✅ | ✅ | ✅ |
+| Passwort-Generator | ✅ | ✅ | ✅ |
+| Code-Komplexität | Mittel | Mittel | Mittel |
+| Performance | Gut | Sehr gut | Gut |
+
+## 📄 Lizenz
+
+Dieses Projekt wurde für Bildungszwecke erstellt.

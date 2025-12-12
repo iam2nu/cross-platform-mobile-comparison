@@ -108,7 +108,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
                     const SizedBox(height: 20),
 
-                    // Stündliche Vorhersage
+                    // 3-Stunden-Vorhersage
                     if (weatherProvider.selectedDate != null &&
                         !weatherProvider.isLoadingHourly)
                       HourlyWeatherWidget(

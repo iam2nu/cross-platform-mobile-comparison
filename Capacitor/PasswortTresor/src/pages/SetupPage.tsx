@@ -17,7 +17,7 @@ import {
   IonText,
   IonNote
 } from '@ionic/react';
-import { lockClosed, eye, eyeOff, shield } from 'ionicons/icons';
+import { eye, eyeOff, shield } from 'ionicons/icons';
 import CryptoService from '../services/CryptoService';
 import StorageService from '../services/StorageService';
 

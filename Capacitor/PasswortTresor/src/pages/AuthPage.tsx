@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   IonPage,
   IonHeader,
@@ -16,9 +16,10 @@ import {
   IonIcon,
   IonNote
 } from '@ionic/react';
-import { lockClosed, eye, eyeOff } from 'ionicons/icons';
+import { lockClosed, eye, eyeOff, fingerPrint } from 'ionicons/icons';
 import CryptoService from '../services/CryptoService';
 import StorageService from '../services/StorageService';
+import { BiometricAuth } from '@aparajita/capacitor-biometric-auth';
 
 interface AuthPageProps {
   onAuthenticated: () => void;
@@ -29,6 +30,43 @@ const AuthPage: React.FC<AuthPageProps> = ({ onAuthenticated }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [biometricAvailable, setBiometricAvailable] = useState(false);
+
+  useEffect(() => {
+    checkBiometric();
+  }, []);
+
+  const checkBiometric = async () => {
+    try {
+      const result = await BiometricAuth.checkBiometry();
+      setBiometricAvailable(result.isAvailable);
+    } catch (e) {
+      setBiometricAvailable(false);
+    }
+  };
+
+  const authenticateWithBiometric = async () => {
+    setLoading(true);
+    setError('');
+
+    try {
+      await BiometricAuth.authenticate({
+        reason: 'Bitte authentifizieren Sie sich, um auf den Passwort-Tresor zuzugreifen',
+        cancelTitle: 'Abbrechen',
+        allowDeviceCredential: true,
+        iosFallbackTitle: 'Mit Passwort entsperren',
+      });
+
+      onAuthenticated();
+    } catch (error: any) {
+      console.error('Biometric auth error:', error);
+      if (error.code !== 'userCancel' && error.code !== 'appCancel') {
+        setError('Fehler bei der Authentifizierung');
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleLogin = async () => {
     if (!password) {
@@ -118,6 +156,19 @@ const AuthPage: React.FC<AuthPageProps> = ({ onAuthenticated }) => {
               >
                 {loading ? 'Entsperren...' : 'Entsperren'}
               </IonButton>
+
+              {biometricAvailable && (
+                <IonButton
+                  expand="block"
+                  fill="outline"
+                  onClick={authenticateWithBiometric}
+                  disabled={loading}
+                  style={{ marginTop: '12px' }}
+                >
+                  <IonIcon icon={fingerPrint} slot="start" />
+                  Mit Biometrie entsperren
+                </IonButton>
+              )}
             </IonCardContent>
           </IonCard>
         </div>

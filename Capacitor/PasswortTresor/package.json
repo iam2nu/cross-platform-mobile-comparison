@@ -14,13 +14,15 @@
     "open:ios": "cap open ios"
   },
   "dependencies": {
+    "@aparajita/capacitor-biometric-auth": "^9.1.2",
     "@capacitor/android": "^6.0.0",
+    "@capacitor/clipboard": "^6.0.2",
     "@capacitor/core": "^6.0.0",
     "@capacitor/ios": "^6.0.0",
     "@capacitor/preferences": "^6.0.2",
-    "@capacitor/clipboard": "^6.0.2",
     "@ionic/react": "^8.0.0",
     "@ionic/react-router": "^8.0.0",
+    "android": "^0.0.8",
     "ionicons": "^7.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

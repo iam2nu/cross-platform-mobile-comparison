@@ -3,15 +3,18 @@ import {
   IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonList,
   IonItem, IonLabel, IonIcon, IonFab, IonFabButton, IonSearchbar,
   IonButton, IonButtons, IonRefresher, IonRefresherContent,
-  useIonAlert, useIonModal
+  useIonAlert
 } from '@ionic/react';
 import {
-  add, star, starOutline, trash, create, settings, search,
-  lockClosed
+  add, star, starOutline, trash,
+  lockClosed, settings, cloudUpload
 } from 'ionicons/icons';
 import { Credential } from '../models/Credential';
 import StorageService from '../services/StorageService';
+import AutoLockService from '../services/AutoLockService';
 import CredentialModal from '../components/CredentialModal';
+import SettingsModal from '../components/SettingsModal';
+import ExportImportModal from '../components/ExportImportModal';
 
 interface HomePageProps {
   onLock: () => void;
@@ -21,10 +24,19 @@ const HomePage: React.FC<HomePageProps> = ({ onLock }) => {
   const [credentials, setCredentials] = useState<Credential[]>([]);
   const [searchText, setSearchText] = useState('');
   const [presentAlert] = useIonAlert();
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
+  const [showExportImportModal, setShowExportImportModal] = useState(false);
 
   useEffect(() => {
     loadCredentials();
+    initializeAutoLock();
   }, []);
+
+  const initializeAutoLock = async () => {
+    const settingsData = await StorageService.getSettings();
+    const autoLockService = AutoLockService.getInstance();
+    autoLockService.initialize(settingsData.autoLockTimeout, onLock);
+  };
 
   const loadCredentials = async () => {
     const creds = await StorageService.getCredentials();
@@ -64,12 +76,19 @@ const HomePage: React.FC<HomePageProps> = ({ onLock }) => {
     });
   };
 
-  const [presentModal, dismissModal] = useIonModal(CredentialModal, {
-    onDismiss: () => {
-      dismissModal();
-      loadCredentials();
-    }
-  });
+  const [selectedCredential, setSelectedCredential] = useState<Credential | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = (cred: Credential | null) => {
+    setSelectedCredential(cred);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedCredential(null);
+    loadCredentials();
+  };
 
   const filteredCredentials = credentials.filter(c =>
     c.title?.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -82,6 +101,12 @@ const HomePage: React.FC<HomePageProps> = ({ onLock }) => {
         <IonToolbar color="primary">
           <IonTitle>Passwort-Tresor</IonTitle>
           <IonButtons slot="end">
+            <IonButton onClick={() => setShowExportImportModal(true)}>
+              <IonIcon icon={cloudUpload} />
+            </IonButton>
+            <IonButton onClick={() => setShowSettingsModal(true)}>
+              <IonIcon icon={settings} />
+            </IonButton>
             <IonButton onClick={onLock}>
               <IonIcon icon={lockClosed} />
             </IonButton>
@@ -113,7 +138,7 @@ const HomePage: React.FC<HomePageProps> = ({ onLock }) => {
               <IonItem
                 key={cred.id}
                 button
-                onClick={() => presentModal({ credential: cred })}
+                onClick={() => openModal(cred)}
                 className="credential-card"
               >
                 <div className="credential-avatar" slot="start">
@@ -138,10 +163,30 @@ const HomePage: React.FC<HomePageProps> = ({ onLock }) => {
         )}
 
         <IonFab vertical="bottom" horizontal="end" slot="fixed">
-          <IonFabButton onClick={() => presentModal({ credential: null })}>
+          <IonFabButton onClick={() => openModal(null)}>
             <IonIcon icon={add} />
           </IonFabButton>
         </IonFab>
+
+        <CredentialModal
+          credential={selectedCredential}
+          onDismiss={closeModal}
+          isOpen={isModalOpen}
+        />
+
+        <SettingsModal
+          isOpen={showSettingsModal}
+          onDismiss={() => {
+            setShowSettingsModal(false);
+            initializeAutoLock(); // Reload auto-lock settings
+          }}
+        />
+
+        <ExportImportModal
+          isOpen={showExportImportModal}
+          onDismiss={() => setShowExportImportModal(false)}
+          onImportComplete={loadCredentials}
+        />
       </IonContent>
     </IonPage>
   );

@@ -29,6 +29,7 @@ export default function AddEditCredentialScreen({
   const [title, setTitle] = useState(credential?.title || '');
   const [username, setUsername] = useState(credential?.username || '');
   const [password, setPassword] = useState(credential?.password || '');
+  const [url, setUrl] = useState(credential?.url || '');
   const [notes, setNotes] = useState(credential?.notes || '');
   const [obscurePassword, setObscurePassword] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -76,6 +77,7 @@ export default function AddEditCredentialScreen({
       title: title.trim(),
       username: username.trim(),
       password: password.trim(),
+      url: url.trim() || undefined,
       notes: notes.trim() || undefined,
       createdAt: credential?.createdAt,
       modifiedAt: credential ? new Date().toISOString() : undefined,
@@ -210,6 +212,21 @@ export default function AddEditCredentialScreen({
               <Text style={styles.historyButtonText}>Passwort-Historie anzeigen</Text>
             </TouchableOpacity>
           )}
+        </View>
+
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>URL (optional)</Text>
+          <View style={styles.inputWrapper}>
+            <Ionicons name="globe-outline" size={20} color="#666" style={styles.inputIcon} />
+            <TextInput
+              style={styles.input}
+              placeholder="https://..."
+              value={url}
+              onChangeText={setUrl}
+              autoCapitalize="none"
+              keyboardType="url"
+            />
+          </View>
         </View>
 
         <View style={styles.inputContainer}>
