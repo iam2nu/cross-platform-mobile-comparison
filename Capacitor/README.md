@@ -9,12 +9,12 @@ Capacitor ist ein Cross-Platform Native Runtime, das es ermöglicht, Web-Apps al
 ### 1. AutoLogbuch
 Fahrzeugverwaltungs-App mit GPS-Tracking, Wartungshistorie und Capacitor Preferences Storage.
 
-**Siehe:** [AutoLogbuch/README.md](AutoLogbuch/README.md) | [AutoLogbuch/QUICKSTART.md](AutoLogbuch/QUICKSTART.md)
+**Siehe:** [AutoLogbuch/README.md](AutoLogbuch/README.md)
 
 ### 2. WetterApp
 Wetter-App mit aktuellen Daten, 7-Tage und stündlicher Vorhersage von OpenWeatherMap API.
 
-**Siehe:** [WetterApp/README.md](WetterApp/README.md) | [WetterApp/QUICKSTART.md](WetterApp/QUICKSTART.md)
+**Siehe:** [WetterApp/README.md](WetterApp/README.md)
 
 ### 3. PasswortTresor
 Sicherer Passwort-Manager mit verschlüsselter Speicherung und Ionic UI Components.

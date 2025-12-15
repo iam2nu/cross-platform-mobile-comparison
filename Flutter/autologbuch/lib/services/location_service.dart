@@ -1,6 +1,7 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:geocoding/geocoding.dart';
+import 'dart:developer' as developer;
 
 class LocationService {
   static final LocationService _instance = LocationService._internal();
@@ -96,7 +97,7 @@ class LocationService {
       }
       return null;
     } catch (e) {
-      print("Fehler beim Geocoding: $e");
+      developer.log('Fehler beim Geocoding: $e', name: 'LocationService');
       return null;
     }
   }

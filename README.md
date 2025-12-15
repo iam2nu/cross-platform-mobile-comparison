@@ -185,8 +185,7 @@ Alle PasswortTresor-Implementierungen bieten:
 ## 📚 Dokumentation
 
 Jede App-Implementierung enthält:
-- **README.md** - Vollständige Dokumentation
-- **QUICKSTART.md** - Schnelleinstieg
+- **README.md** - Vollständige Dokumentation mit Quick Start Guide
 
 Jedes Framework hat zusätzlich:
 - Übersichts-README zur Technologie

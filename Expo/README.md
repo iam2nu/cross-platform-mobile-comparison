@@ -9,17 +9,17 @@ Expo ist ein Framework und eine Plattform für universelle React Native Anwendun
 ### 1. AutoLogbuch
 Fahrzeugverwaltungs-App mit GPS-Tracking, Wartungshistorie und SQLite-Datenbank.
 
-**Siehe:** [autologbuch/README.md](autologbuch/README.md) | [autologbuch/QUICKSTART.md](autologbuch/QUICKSTART.md)
+**Siehe:** [autologbuch/README.md](autologbuch/README.md)
 
 ### 2. WetterApp
 Wetter-App mit aktuellen Daten, 7-Tage und stündlicher Vorhersage von OpenWeatherMap API.
 
-**Siehe:** [wetterapp/README.md](wetterapp/README.md) | [wetterapp/QUICKSTART.md](wetterapp/QUICKSTART.md)
+**Siehe:** [wetterapp/README.md](wetterapp/README.md)
 
 ### 3. PasswortTresor
 Sicherer Passwort-Manager mit biometrischer Authentifizierung und verschlüsselter Speicherung.
 
-**Siehe:** [passworttresor/README.md](passworttresor/README.md) | [passworttresor/QUICKSTART.md](passworttresor/QUICKSTART.md)
+**Siehe:** [passworttresor/README.md](passworttresor/README.md)
 
 ## 🚀 Vorteile von Expo
 

@@ -12,7 +12,7 @@ Eine moderne Wetter-App mit OpenWeatherMap API, entwickelt mit Expo und React Na
 - **Pull-to-Refresh**: Daten durch Herunterziehen aktualisieren
 - **State Management**: Zustand für globales State Management
 
-## 🛠️ Technologie-Stack
+## 🛠️ Tech Stack
 
 - **Framework**: Expo SDK 54
 - **Sprache**: TypeScript 5.9
@@ -20,28 +20,53 @@ Eine moderne Wetter-App mit OpenWeatherMap API, entwickelt mit Expo und React Na
 - **State**: Zustand (State Management Library)
 - **HTTP**: Axios für API-Calls
 - **API**: OpenWeatherMap API
-- **Navigation**: React Navigation (optional)
 
-## 🚀 Installation & Start
+## 🚀 Quick Start
 
-### Voraussetzungen
-- Node.js (v18+)
-- Expo Go App auf Smartphone
-- Optional: Android Emulator oder iOS Simulator
+### 1. Dependencies installieren
 
-### Befehle
 ```bash
-# Dependencies installieren
+cd Expo/wetterapp
 npm install
-
-# Development Server starten
-npm start
-
-# Auf spezifischer Plattform
-npm run android    # Android
-npm run ios        # iOS (nur macOS)
-npm run web        # Web Browser
 ```
+
+### 2. API Key konfigurieren
+
+API Key ist bereits in `src/services/weatherService.ts` konfiguriert.
+Für eigenen Key: Registriere dich auf https://openweathermap.org/api
+
+### 3. App starten
+
+```bash
+npm start
+```
+
+Dann wählen:
+- **Android**: Drücke `a` (Emulator) oder scanne QR-Code mit Expo Go
+- **iOS**: Drücke `i` (Simulator, nur macOS) oder scanne QR-Code
+- **Web**: Drücke `w`
+
+### 4. Expo Go App
+
+**Installation:**
+- **Android**: [Google Play](https://play.google.com/store/apps/details?id=host.exp.exponent)
+- **iOS**: [App Store](https://apps.apple.com/app/expo-go/id982107779)
+
+**Verwendung:**
+1. Expo Go öffnen
+2. QR-Code scannen
+3. App lädt automatisch
+
+## 📝 Verwendung
+
+### Features testen
+
+1. **Stadt auswählen** - Aus der Liste beliebter Städte
+2. **Stadt suchen** - Tippe auf Suchfeld und gib Stadt ein
+3. **Aktuelles Wetter** - Temperatur, Beschreibung, Luftfeuchtigkeit, Wind
+4. **7-Tage Vorhersage** - Scrolle horizontal durch die Woche
+5. **Stündliche Vorhersage** - Tippe auf einen Tag für 24h-Details
+6. **Aktualisieren** - Ziehe Liste nach unten (Pull-to-Refresh)
 
 ## 📁 Projektstruktur
 
@@ -66,174 +91,45 @@ src/
     └── theme.ts
 ```
 
+## 🔧 Wichtige Befehle
+
+```bash
+# Development Server
+npm start
+
+# Mit Cache-Clear
+npx expo start -c
+
+# Spezifische Plattform
+npm run android
+npm run ios
+npm run web
+
+# TypeScript Check
+npx tsc --noEmit
+```
+
 ## 🌐 API Integration
 
 ### OpenWeatherMap API
+
 Die App verwendet folgende Endpoints:
 - **Current Weather**: `/weather`
 - **5-Day Forecast**: `/forecast`
 
-API Key ist in `src/services/weatherService.ts` konfiguriert.
-
-### Beispiel API-Call
-```typescript
-import { weatherService } from './src/services/weatherService';
-
-const weather = await weatherService.getCurrentWeather('Zürich');
-const forecast = await weatherService.getWeatherForecast('Zürich');
-```
-
-## 🎯 Hauptfunktionen
-
-### Aktuelles Wetter
-- Temperatur (°C)
-- Wetterbeschreibung (Deutsch)
-- Gefühlte Temperatur
-- Luftfeuchtigkeit (%)
-- Windgeschwindigkeit (km/h)
-- Wetter-Icon
-
-### 7-Tage Vorhersage
-- Min/Max Temperaturen
-- Wetterbeschreibung
-- Wetter-Icons
-- Horizontal scrollbar
-- Klickbar für stündliche Details
-
-### Stündliche Vorhersage
-- 24-Stunden Prognose für ausgewählten Tag
-- Temperatur pro Stunde
-- Wetter-Icons
-- Zeitangabe (HH:MM)
-
-### Stadt-Suche
-- Echtzeit-Suche beim Tippen
-- Beliebte Städte als Quick-Access
-- Fehlerbehandlung bei ungültigen Städten
-
-## 📦 Wichtige Dependencies
-
-```json
-{
-  "expo": "~54.0.23",
-  "react-native": "0.81.5",
-  "zustand": "^5.0.2",
-  "axios": "^1.7.9",
-  "date-fns": "^4.1.0",
-  "typescript": "~5.9.2"
-}
-```
-
-## 🎨 UI/UX
-
-- **Farbschema**: Blau (#1976D2) als Primary, Orange (#FF9800) als Accent
-- **Material Design** inspirierte Komponenten
-- **Responsive Layout** für verschiedene Bildschirmgrößen
-- **Loading States** während API-Calls
-- **Error Handling** mit Fehlermeldungen
-- **Pull-to-Refresh** Geste
-- **Smooth Scrolling** und Animationen
-- **TouchableOpacity** für interaktive Elemente
-
-## 🔧 Konfiguration
-
-### API Key ändern
-In `src/services/weatherService.ts`:
-```typescript
-const API_KEY = 'YOUR_API_KEY';
-```
-
-### Sprache ändern
-```typescript
-const API_LANGUAGE = 'en'; // Statt 'de'
-```
-
-### Standard-Stadt ändern
-In `src/screens/WeatherScreen.tsx`:
-```typescript
-const [cityName, setCityName] = useState('Berlin'); // Statt 'Zürich'
-```
-
-## 📱 State Management
-
-Die App verwendet **Zustand** für globales State Management:
-
-```typescript
-// Store verwenden
-const {
-  currentWeather,
-  forecast,
-  hourlyWeather,
-  isLoading,
-  error,
-  fetchWeatherData,
-  selectDate,
-} = useWeatherStore();
-
-// Daten laden
-await fetchWeatherData('Zürich');
-
-// Tag auswählen
-selectDate(new Date());
-```
-
-## 🔧 Entwicklung
-
-### Hot Reload
-- Änderungen werden automatisch aktualisiert
-- Shake-Geste für Dev-Menu
-- `Cmd+D` (iOS) oder `Ctrl+M` (Android) für Dev-Menu
-
-### Debugging
-```bash
-# React Native Debugger verwenden
-npm start
-# Im Dev-Menu "Debug" wählen
-```
-
-### TypeScript Check
-```bash
-npx tsc --noEmit
-```
-
-### Linting
-```bash
-npm run lint
-```
-
-## 📱 Build & Deployment
-
-### Development Build
-```bash
-eas build --profile development --platform android
-```
-
-### Production Build
-```bash
-eas build --platform android
-eas build --platform ios
-```
-
-### Over-the-Air Updates
-```bash
-eas update --branch production
-```
+Konfiguriert in `src/services/weatherService.ts`
 
 ## 🐛 Troubleshooting
-
-### API-Fehler
-- Prüfe API Key
-- Prüfe Internetverbindung
-- API-Limit erreicht? (60 Calls/Minute kostenlos)
 
 ### "Cannot connect to Metro"
 ```bash
 npx expo start -c
 ```
 
-### Bilder laden nicht
-- Internetverbindung prüfen
-- Wetter-Icon URLs korrekt?
+### "API Fehler"
+- Prüfe Internet-Verbindung
+- API-Key gültig?
+- Stadt korrekt geschrieben?
 
 ### Dependencies fehlen
 ```bash
@@ -242,31 +138,12 @@ npm install
 npx expo start -c
 ```
 
-## 🌍 Unterstützte Städte
+## 💡 Tipps
 
-Die App funktioniert mit allen Städten weltweit. Beispiele:
-- **Schweiz**: Zürich, Bern, Basel, Genf, Lausanne, Luzern, St. Gallen, Lugano
-- **Deutschland**: Berlin, München, Hamburg, Köln, Frankfurt
-- **Österreich**: Wien, Salzburg, Graz, Innsbruck
-- **Und viele mehr...**
-
-## 📚 Weitere Dokumentation
-
-- [Expo Docs](https://docs.expo.dev)
-- [React Native Docs](https://reactnative.dev)
-- [Zustand Docs](https://docs.pmnd.rs/zustand)
-- [OpenWeatherMap API](https://openweathermap.org/api)
-
-## 🎯 Mögliche Erweiterungen
-
-- Favoriten-Städte speichern (AsyncStorage)
-- Geolocation für aktuellen Standort
-- Wetter-Benachrichtigungen
-- Dark Mode Toggle
-- Mehrsprachigkeit (i18n)
-- Offline-Modus mit Caching
-- Wetter-Charts mit Victory Native
-- Animation bei Wetter-Übergängen
+- **Dev-Menu**: Gerät schütteln oder `Cmd+D` (iOS) / `Ctrl+M` (Android)
+- **Reload**: `r` im Terminal drücken
+- **Clear Cache**: `npx expo start -c`
+- **API-Limit**: Kostenloser Plan hat 60 Calls/Minute Limit
 
 ## 📄 Lizenz
 

@@ -9,6 +9,7 @@ import {
   RefreshControl,
   TextInput,
   Modal,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Credential } from '../models/Credential';
@@ -47,6 +48,10 @@ export default function HomeScreen({ onLock }: HomeScreenProps) {
     autoLockService.initialize(settings.autoLockTimeout, onLock);
   };
 
+  const resetAutoLockTimer = () => {
+    autoLockService.resetTimer();
+  };
+
   const loadCredentials = async () => {
     setIsLoading(true);
     const creds = await storageService.getCredentials();
@@ -66,11 +71,13 @@ export default function HomeScreen({ onLock }: HomeScreenProps) {
   }, []);
 
   const toggleFavorite = async (id: string) => {
+    resetAutoLockTimer();
     await storageService.toggleFavorite(id);
     loadCredentials();
   };
 
   const deleteCredential = (credential: Credential) => {
+    resetAutoLockTimer();
     Alert.alert(
       'Eintrag löschen',
       `Möchten Sie "${credential.title}" wirklich löschen?`,
@@ -89,6 +96,7 @@ export default function HomeScreen({ onLock }: HomeScreenProps) {
   };
 
   const openDetailModal = (credential: Credential) => {
+    resetAutoLockTimer();
     setSelectedCredential(credential);
     setShowDetailModal(true);
   };
@@ -138,106 +146,118 @@ export default function HomeScreen({ onLock }: HomeScreenProps) {
   );
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Passwort-Tresor</Text>
-        <View style={styles.headerActions}>
-          <TouchableOpacity
-            onPress={() => setShowSearch(!showSearch)}
-            style={styles.headerButton}
-          >
-            <Ionicons name="search" size={24} color="#333" />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => setShowSettingsModal(true)}
-            style={styles.headerButton}
-          >
-            <Ionicons name="settings-outline" size={24} color="#333" />
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      {showSearch && (
-        <View style={styles.searchContainer}>
-          <Ionicons name="search" size={20} color="#666" style={styles.searchIcon} />
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Suchen..."
-            value={searchQuery}
-            onChangeText={setSearchQuery}
-          />
-          {searchQuery.length > 0 && (
-            <TouchableOpacity onPress={() => setSearchQuery('')}>
-              <Ionicons name="close-circle" size={20} color="#666" />
+    <TouchableWithoutFeedback onPress={resetAutoLockTimer}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Passwort-Tresor</Text>
+          <View style={styles.headerActions}>
+            <TouchableOpacity
+              onPress={() => {
+                resetAutoLockTimer();
+                setShowSearch(!showSearch);
+              }}
+              style={styles.headerButton}
+            >
+              <Ionicons name="search" size={24} color="#333" />
             </TouchableOpacity>
-          )}
+            <TouchableOpacity
+              onPress={() => {
+                resetAutoLockTimer();
+                setShowSettingsModal(true);
+              }}
+              style={styles.headerButton}
+            >
+              <Ionicons name="settings-outline" size={24} color="#333" />
+            </TouchableOpacity>
+          </View>
         </View>
-      )}
 
-      {isLoading ? (
-        <View style={styles.emptyContainer}>
-          <Text>Lädt...</Text>
-        </View>
-      ) : filteredCredentials.length === 0 ? (
-        <View style={styles.emptyContainer}>
-          <Ionicons name="lock-open-outline" size={80} color="#ccc" />
-          <Text style={styles.emptyText}>Keine Einträge vorhanden</Text>
-          <Text style={styles.emptySubtext}>Fügen Sie einen neuen Eintrag hinzu</Text>
-        </View>
-      ) : (
-        <FlatList
-          data={filteredCredentials}
-          renderItem={renderCredentialItem}
-          keyExtractor={(item) => item.id}
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }
-          contentContainerStyle={styles.listContent}
+        {showSearch && (
+          <View style={styles.searchContainer}>
+            <Ionicons name="search" size={20} color="#666" style={styles.searchIcon} />
+            <TextInput
+              style={styles.searchInput}
+              placeholder="Suchen..."
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+              onFocus={resetAutoLockTimer}
+            />
+            {searchQuery.length > 0 && (
+              <TouchableOpacity onPress={() => setSearchQuery('')}>
+                <Ionicons name="close-circle" size={20} color="#666" />
+              </TouchableOpacity>
+            )}
+          </View>
+        )}
+
+        {isLoading ? (
+          <View style={styles.emptyContainer}>
+            <Text>Lädt...</Text>
+          </View>
+        ) : filteredCredentials.length === 0 ? (
+          <View style={styles.emptyContainer}>
+            <Ionicons name="lock-open-outline" size={80} color="#ccc" />
+            <Text style={styles.emptyText}>Keine Einträge vorhanden</Text>
+            <Text style={styles.emptySubtext}>Fügen Sie einen neuen Eintrag hinzu</Text>
+          </View>
+        ) : (
+          <FlatList
+            data={filteredCredentials}
+            renderItem={renderCredentialItem}
+            keyExtractor={(item) => item.id}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+            contentContainerStyle={styles.listContent}
+            onScrollBeginDrag={resetAutoLockTimer}
+          />
+        )}
+
+        <TouchableOpacity
+          style={styles.fab}
+          onPress={() => {
+            resetAutoLockTimer();
+            setSelectedCredential(null);
+            setShowDetailModal(true);
+          }}
+        >
+          <Ionicons name="add" size={28} color="#fff" />
+        </TouchableOpacity>
+
+        {showDetailModal && (
+          <CredentialDetailModal
+            credential={selectedCredential}
+            visible={showDetailModal}
+            onClose={closeDetailModal}
+            onToggleFavorite={toggleFavorite}
+            onInteraction={resetAutoLockTimer}
+          />
+        )}
+
+        <SettingsModal
+          visible={showSettingsModal}
+          onClose={() => setShowSettingsModal(false)}
+          onExport={() => {
+            setShowSettingsModal(false);
+            setShowExportModal(true);
+          }}
+          onImport={() => {
+            setShowSettingsModal(false);
+            setShowImportModal(true);
+          }}
         />
-      )}
 
-      <TouchableOpacity
-        style={styles.fab}
-        onPress={() => {
-          setSelectedCredential(null);
-          setShowDetailModal(true);
-        }}
-      >
-        <Ionicons name="add" size={28} color="#fff" />
-      </TouchableOpacity>
-
-      {showDetailModal && (
-        <CredentialDetailModal
-          credential={selectedCredential}
-          visible={showDetailModal}
-          onClose={closeDetailModal}
-          onToggleFavorite={toggleFavorite}
+        <ExportImportModal
+          visible={showExportModal || showImportModal}
+          mode={showExportModal ? 'export' : 'import'}
+          onClose={() => {
+            setShowExportModal(false);
+            setShowImportModal(false);
+          }}
+          onImportSuccess={loadCredentials}
         />
-      )}
-
-      <SettingsModal
-        visible={showSettingsModal}
-        onClose={() => setShowSettingsModal(false)}
-        onExport={() => {
-          setShowSettingsModal(false);
-          setShowExportModal(true);
-        }}
-        onImport={() => {
-          setShowSettingsModal(false);
-          setShowImportModal(true);
-        }}
-      />
-
-      <ExportImportModal
-        visible={showExportModal || showImportModal}
-        mode={showExportModal ? 'export' : 'import'}
-        onClose={() => {
-          setShowExportModal(false);
-          setShowImportModal(false);
-        }}
-        onImportSuccess={loadCredentials}
-      />
-    </View>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 

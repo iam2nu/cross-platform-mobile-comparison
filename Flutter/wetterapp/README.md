@@ -12,7 +12,7 @@ Eine moderne Wetter-App mit OpenWeatherMap API, entwickelt mit Flutter.
 - **Pull-to-Refresh**: Daten aktualisieren durch Herunterziehen
 - **Material Design**: Native UI für Android und iOS
 
-## 🛠️ Technologie-Stack
+## 🛠️ Tech Stack
 
 - **Framework**: Flutter 3.x
 - **Sprache**: Dart 3.x
@@ -21,25 +21,41 @@ Eine moderne Wetter-App mit OpenWeatherMap API, entwickelt mit Flutter.
 - **UI**: Material Design Widgets
 - **API**: OpenWeatherMap API
 
-## 🚀 Installation & Start
+## 🚀 Quick Start
 
-### Voraussetzungen
-- Flutter SDK installiert
-- OpenWeatherMap API Key (bereits konfiguriert)
+### 1. Dependencies installieren
 
-### Befehle
 ```bash
-# Dependencies installieren
+cd Flutter/wetterapp
 flutter pub get
-
-# App starten
-flutter run
-
-# Auf spezifischer Plattform
-flutter run -d android
-flutter run -d ios
-flutter run -d chrome
 ```
+
+### 2. API Key konfigurieren
+
+API Key ist bereits in `lib/services/weather_service.dart` konfiguriert.
+Für eigenen Key: Registriere dich auf https://openweathermap.org/api
+
+### 3. App starten
+
+```bash
+flutter run
+```
+
+Wähle dann:
+- **Android Emulator**: Drücke `a`
+- **iOS Simulator**: Drücke `i` (nur macOS)
+- **Chrome Browser**: Drücke `c`
+
+## 📝 Verwendung
+
+### Features testen
+
+1. **Stadt auswählen** - Aus der Liste beliebter Städte
+2. **Stadt suchen** - Suchfeld nutzen für beliebige Stadt
+3. **Aktuelles Wetter** - Temperatur, Beschreibung, Luftfeuchtigkeit, Wind
+4. **7-Tage Vorhersage** - Horizontal durchscrollen
+5. **Stündliche Vorhersage** - Auf Tag tippen für 24h-Details
+6. **Aktualisieren** - Nach unten ziehen (Pull-to-Refresh)
 
 ## 📁 Projektstruktur
 
@@ -61,177 +77,62 @@ lib/
     └── search_bar_widget.dart
 ```
 
+## 🔧 Wichtige Befehle
+
+```bash
+# Hot Reload
+r
+
+# Hot Restart
+R
+
+# Build für Android
+flutter build apk
+
+# Build für iOS
+flutter build ios
+
+# Tests ausführen
+flutter test
+```
+
 ## 🌐 API Integration
 
 ### OpenWeatherMap API
+
 Die App verwendet folgende Endpoints:
 - **Current Weather**: `/weather`
 - **5-Day Forecast**: `/forecast`
 
-API Key ist in `lib/services/weather_service.dart` konfiguriert.
-
-### Beispiel API-Call
-```dart
-final weatherService = WeatherService();
-final weather = await weatherService.getCurrentWeather('Zürich');
-```
-
-## 🎯 Hauptfunktionen
-
-### Aktuelles Wetter
-- Temperatur (°C)
-- Wetterbeschreibung
-- Gefühlte Temperatur
-- Luftfeuchtigkeit
-- Windgeschwindigkeit
-- Wetter-Icon
-
-### 7-Tage Vorhersage
-- Min/Max Temperaturen
-- Wetterbeschreibung
-- Horizontal scrollbar
-- Klickbar für Details
-
-### Stündliche Vorhersage
-- 24-Stunden Prognose
-- Temperatur pro Stunde
-- Wetter-Icons
-- Zeitangabe
-
-### Stadt-Suche
-- Echtzeit-Suche
-- Beliebte Städte Liste
-- Such-Historie (optional)
-
-## 📦 Wichtige Packages
-
-```yaml
-dependencies:
-  flutter:
-    sdk: flutter
-  http: ^1.1.x               # HTTP Requests
-  intl: ^0.18.x              # Datum/Zeit Formatierung
-```
-
-## 🎨 UI/UX
-
-- **Farbschema**: Blau (#2196F3) als Primary Color
-- **Material Design** Komponenten
-- **Responsive Layout** für verschiedene Bildschirmgrößen
-- **Loading States** während API-Calls
-- **Error Handling** mit Fehlermeldungen
-- **Pull-to-Refresh** Geste
-- **Smooth Scrolling** und Animationen
-
-## 🔧 Konfiguration
-
-### API Key einrichten
-
-1. Kopiere `.env.example` zu `.env`:
-```bash
-cp .env.example .env
-```
-
-2. Füge deinen OpenWeatherMap API Key in `.env` ein:
-```env
-API_KEY=dein_api_key_hier
-```
-
-### API Key ändern
-Bearbeite die `.env` Datei:
-```env
-API_KEY=YOUR_NEW_API_KEY
-```
-
-### Sprache ändern
-In `lib/services/weather_service.dart`:
-```dart
-// Ändere 'de' zu gewünschter Sprache (z.B. 'en')
-'$_baseUrl/weather?q=$cityName&appid=$_apiKey&units=metric&lang=de'
-```
-
-### Einheiten ändern
-```dart
-// Ändere 'metric' zu 'imperial' für Fahrenheit
-units=metric  // Celsius
-units=imperial  // Fahrenheit
-```
-
-## 📱 Build
-
-### Android APK
-```bash
-flutter build apk --release
-```
-
-### iOS
-```bash
-flutter build ios --release
-```
-
-### Web
-```bash
-flutter build web
-```
-
-## 🔧 Entwicklung
-
-### Hot Reload
-```bash
-# In der laufenden App: 'r' drücken
-r
-```
-
-### Debug
-```bash
-flutter run --verbose
-```
-
-### Logs
-```bash
-flutter logs
-```
+Konfiguriert in `lib/services/weather_service.dart`
 
 ## 🐛 Troubleshooting
 
-### API-Fehler
-- Prüfe API Key
-- Prüfe Internetverbindung
-- Prüfe API-Limits (60 Calls/Minute)
+### "API Fehler"
+- Internet-Verbindung prüfen
+- API-Key gültig?
+- Stadt korrekt geschrieben?
 
-### Bilder laden nicht
-- Prüfe Internetverbindung
-- Wetter-Icon URLs korrekt?
-
-### Build-Fehler
+### "Dependencies fehlen"
 ```bash
 flutter clean
 flutter pub get
 flutter run
 ```
 
-## 🌍 Unterstützte Städte
+### "Build-Fehler"
+```bash
+flutter clean
+flutter pub get
+flutter run
+```
 
-Die App funktioniert mit allen Städten weltweit. Beispiele:
-- Zürich, Bern, Basel (Schweiz)
-- Berlin, München, Hamburg (Deutschland)
-- Wien, Salzburg, Graz (Österreich)
-- Und viele mehr...
+## 💡 Tipps
 
-## 📚 Weitere Dokumentation
-
-- [Flutter Docs](https://flutter.dev/docs)
-- [OpenWeatherMap API](https://openweathermap.org/api)
-- [http Package](https://pub.dev/packages/http)
-
-## 🎯 Mögliche Erweiterungen
-
-- Favoriten-Städte speichern
-- Wetter-Benachrichtigungen
-- Dark Mode
-- Wetter-Charts
-- Offline-Modus mit Caching
-- Geolocation für aktuellen Standort
+- **Hot Reload**: `r` in der laufenden App
+- **Hot Restart**: `R` für vollständigen Neustart
+- **API-Limit**: Kostenloser Plan hat 60 Calls/Minute Limit
+- **Offline**: App funktioniert mit letzten gecachten Daten
 
 ## 📄 Lizenz
 

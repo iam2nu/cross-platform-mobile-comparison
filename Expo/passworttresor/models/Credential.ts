@@ -3,6 +3,7 @@ export interface Credential {
   title: string;
   username: string;
   password: string;
+  url?: string;
   createdAt: string;
   modifiedAt?: string;
   notes?: string;
@@ -23,6 +24,7 @@ export const createCredential = (
     title: data.title,
     username: data.username,
     password: data.password,
+    url: data.url,
     createdAt: data.createdAt || new Date().toISOString(),
     modifiedAt: data.modifiedAt,
     notes: data.notes,

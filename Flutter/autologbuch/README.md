@@ -11,7 +11,7 @@ Eine Fahrzeugverwaltungs-App mit GPS-Tracking, entwickelt mit Flutter.
 - **SQLite Datenbank**: Persistente lokale Datenspeicherung
 - **Material Design**: Native Android und iOS UI
 
-## 🛠️ Technologie-Stack
+## 🛠️ Tech Stack
 
 - **Framework**: Flutter 3.x
 - **Sprache**: Dart 3.x
@@ -19,24 +19,54 @@ Eine Fahrzeugverwaltungs-App mit GPS-Tracking, entwickelt mit Flutter.
 - **GPS**: Geolocator Package
 - **State**: StatefulWidget + StreamBuilder
 
-## 🚀 Installation & Start
+## 🚀 Quick Start
 
-### Voraussetzungen
-- Flutter SDK installiert
-- Android Studio oder Xcode (für iOS)
+### 1. Dependencies installieren
 
-### Befehle
 ```bash
-# Dependencies installieren
+cd Flutter/autologbuch
 flutter pub get
+```
 
-# App starten
+### 2. Code generieren (Drift Datenbank)
+
+```bash
+flutter pub run build_runner build --delete-conflicting-outputs
+```
+
+### 3. App starten
+
+```bash
 flutter run
+```
 
-# Auf spezifischer Plattform
-flutter run -d android
-flutter run -d ios
-flutter run -d chrome
+Wähle dann:
+- **Android Emulator**: Drücke `a`
+- **iOS Simulator**: Drücke `i` (nur macOS)
+- **Chrome Browser**: Drücke `c`
+
+## 📝 Verwendung
+
+### Features testen
+
+1. **Fahrzeug hinzufügen** - Klicke auf `+` Button
+2. **Wartung erfassen** - Fahrzeug auswählen → Wartung hinzufügen
+3. **Fahrt starten** - GPS-Berechtigung erlauben → Fahrt starten
+4. **Fahrt aufzeichnen** - Bewege dich oder simuliere GPS
+5. **Fahrt beenden** - Fahrt beenden → Details ansehen
+
+### GPS-Berechtigungen
+
+**Android** - In `android/app/src/main/AndroidManifest.xml`:
+```xml
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+```
+
+**iOS** - In `ios/Runner/Info.plist`:
+```xml
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>Diese App benötigt Zugriff auf GPS für die Fahrtaufzeichnung.</string>
 ```
 
 ## 📁 Projektstruktur
@@ -62,140 +92,49 @@ lib/
     └── location_service.dart
 ```
 
-## 🎯 Hauptfunktionen
+## 🔧 Wichtige Befehle
 
-### Fahrzeuge
-- Fahrzeug hinzufügen (Marke, Modell, Kennzeichen)
-- Fahrzeuge anzeigen
-- Kilometerstand verwalten
-
-### Wartungen
-- Wartung erfassen (Datum, Kosten, Beschreibung)
-- Wartungshistorie pro Fahrzeug
-- Gesamtkosten berechnen
-
-### Fahrten
-- Fahrt starten (GPS-Tracking)
-- Live-Distanzberechnung
-- Fahrt beenden
-- Fahrtenbuch mit Details
-
-## 📦 Wichtige Packages
-
-```yaml
-dependencies:
-  flutter:
-    sdk: flutter
-  drift: ^2.x.x              # SQLite ORM
-  geolocator: ^10.x.x        # GPS-Tracking
-  intl: ^0.18.x              # Datum-Formatierung
-  path: ^1.8.x               # Pfad-Utilities
-```
-
-## 🔐 Berechtigungen
-
-### Android
-In `android/app/src/main/AndroidManifest.xml`:
-```xml
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-```
-
-### iOS
-In `ios/Runner/Info.plist`:
-```xml
-<key>NSLocationWhenInUseUsageDescription</key>
-<string>Diese App benötigt Zugriff auf GPS für die Fahrtaufzeichnung.</string>
-```
-
-## 📊 Datenbank-Schema
-
-### Fahrzeuge
-- id (INT, Primary Key)
-- marke (TEXT)
-- modell (TEXT)
-- kennzeichen (TEXT)
-- kilometerstand (REAL)
-- created_at (DATETIME)
-
-### Wartungen
-- id (INT, Primary Key)
-- fahrzeug_id (INT, Foreign Key)
-- typ (TEXT)
-- beschreibung (TEXT)
-- kosten (REAL)
-- datum (DATETIME)
-- kilometerstand (REAL)
-
-### Fahrten
-- id (INT, Primary Key)
-- fahrzeug_id (INT, Foreign Key)
-- start_zeit (DATETIME)
-- end_zeit (DATETIME, nullable)
-- distanz_km (REAL)
-- notizen (TEXT)
-- positionen (JSON)
-
-## 🎨 UI/UX
-
-- Material Design Komponenten
-- Responsive Layout
-- Smooth Animationen
-- FloatingActionButton für Haupt-Aktionen
-- Bottom Sheets für Aktionsmenüs
-- Pull-to-Refresh
-- Loading States
-
-## 🔧 Entwicklung
-
-### Hot Reload
 ```bash
-# In der laufenden App: 'r' drücken
+# Hot Reload
 r
-# Hot Restart: 'R' drücken
+
+# Hot Restart
 R
-```
 
-### Code-Generierung (Drift)
-```bash
-flutter pub run build_runner build
-```
+# Build für Android
+flutter build apk
 
-### Tests
-```bash
+# Build für iOS
+flutter build ios
+
+# Tests
 flutter test
-```
-
-## 📱 Build
-
-### Android APK
-```bash
-flutter build apk --release
-```
-
-### iOS
-```bash
-flutter build ios --release
 ```
 
 ## 🐛 Troubleshooting
 
-### GPS funktioniert nicht
-- Berechtigungen in AndroidManifest.xml / Info.plist prüfen
-- Location Services auf Gerät aktiviert?
-- Im Simulator: Fake Location setzen
-
-### Drift Fehler
+### "Code nicht generiert"
 ```bash
 flutter pub run build_runner clean
 flutter pub run build_runner build --delete-conflicting-outputs
 ```
 
-## 📚 Weitere Dokumentation
+### "GPS funktioniert nicht"
+- Prüfe Berechtigungen in AndroidManifest.xml
+- Aktiviere Location Services auf Gerät
+- Im Simulator: Fake Location setzen
 
-- [Flutter Docs](https://flutter.dev/docs)
-- [Drift Docs](https://drift.simonbinder.eu)
-- [Geolocator Package](https://pub.dev/packages/geolocator)
+### Dependencies fehlen
+```bash
+flutter clean
+flutter pub get
+```
+
+## 💡 Tipps
+
+- **Hot Reload**: `r` in der laufenden App
+- **Hot Restart**: `R` für vollständigen Neustart
+- **Code-Generierung**: Nach Drift-Änderungen `build_runner` ausführen
 
 ## 📄 Lizenz
 

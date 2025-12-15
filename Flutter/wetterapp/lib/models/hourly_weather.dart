@@ -1,3 +1,5 @@
+import 'dart:developer' as developer;
+
 class HourlyWeather {
   final DateTime dateTime;
   final double temperature;
@@ -34,8 +36,8 @@ class HourlyWeather {
         pop: ((json['pop'] ?? 0) as num).toDouble() * 100,
       );
     } catch (e) {
-      print('Error in HourlyWeather.fromJson: $e');
-      print('JSON data: $json');
+      developer.log('Error in HourlyWeather.fromJson: $e', name: 'HourlyWeather');
+      developer.log('JSON data: $json', name: 'HourlyWeather');
       rethrow;
     }
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'dart:developer' as developer;
 import '../models/weather.dart';
 import '../models/weather_forecast.dart';
 import '../models/hourly_weather.dart';
@@ -78,7 +79,7 @@ class WeatherProvider with ChangeNotifier {
         _hourlyWeather = hourlyData;
       }
     } catch (e) {
-      print('Error loading hourly weather: $e'); // Debug
+      developer.log('Error loading hourly weather: $e', name: 'WeatherProvider');
       _error = 'Fehler beim Laden der Wetterdaten: ${e.toString()}';
       _hourlyWeather = [];
     } finally {

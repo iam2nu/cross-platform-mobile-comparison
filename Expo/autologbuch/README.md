@@ -11,7 +11,7 @@ Eine Fahrzeugverwaltungs-App mit GPS-Tracking, entwickelt mit Expo und React Nat
 - **SQLite Datenbank**: Persistente lokale Datenspeicherung mit Expo SQLite
 - **React Native UI**: Native Komponenten für iOS und Android
 
-## 🛠️ Technologie-Stack
+## 🛠️ Tech Stack
 
 - **Framework**: Expo SDK 54
 - **Sprache**: TypeScript 5.9
@@ -21,26 +21,58 @@ Eine Fahrzeugverwaltungs-App mit GPS-Tracking, entwickelt mit Expo und React Nat
 - **GPS**: Expo Location
 - **State**: React Hooks (useState, useEffect)
 
-## 🚀 Installation & Start
+## 🚀 Quick Start
 
-### Voraussetzungen
-- Node.js (v18+)
-- Expo Go App auf Smartphone
-- Optional: Android Emulator oder iOS Simulator
+### 1. Dependencies installieren
 
-### Befehle
 ```bash
-# Dependencies installieren
+cd Expo/autologbuch
 npm install
-
-# Development Server starten
-npm start
-
-# Auf spezifischer Plattform
-npm run android    # Android
-npm run ios        # iOS (nur macOS)
-npm run web        # Web Browser
 ```
+
+### 2. App starten
+
+```bash
+npm start
+```
+
+Dann wählen:
+- **Android**: Drücke `a` (Emulator) oder scanne QR-Code mit Expo Go
+- **iOS**: Drücke `i` (Simulator, nur macOS) oder scanne QR-Code
+- **Web**: Drücke `w`
+
+### 3. Expo Go App
+
+**Installation:**
+- **Android**: [Google Play](https://play.google.com/store/apps/details?id=host.exp.exponent)
+- **iOS**: [App Store](https://apps.apple.com/app/expo-go/id982107779)
+
+**Verwendung:**
+1. Expo Go öffnen
+2. QR-Code scannen
+3. App lädt automatisch
+
+## 📝 Verwendung
+
+### Features testen
+
+1. **Fahrzeug hinzufügen** - `+` Button auf Home Screen
+2. **Wartung erfassen** - Fahrzeug auswählen → "Wartung hinzufügen"
+3. **Fahrt starten** - "Fahrt starten" → GPS-Berechtigung erlauben
+4. **GPS-Tracking** - Bewege dich oder simuliere GPS
+5. **Fahrt beenden** - "Fahrt beenden" → Notizen hinzufügen
+
+### GPS-Berechtigungen
+
+Die App fragt automatisch nach GPS-Berechtigungen beim ersten Start einer Fahrt.
+
+**Simulator:**
+- **Android**: Fake-Location über Emulator-Controls
+- **iOS**: Simulate Location in Xcode
+
+**Echtes Gerät:**
+- Location Services aktivieren
+- Berechtigung "Jederzeit zulassen" für Hintergrund-Tracking
 
 ## 📁 Projektstruktur
 
@@ -68,181 +100,54 @@ src/
     └── theme.ts
 ```
 
-## 🎯 Hauptfunktionen
+## 🔧 Wichtige Befehle
 
-### Fahrzeuge
-- Fahrzeug hinzufügen (Marke, Modell, Kennzeichen)
-- Fahrzeuge-Liste anzeigen
-- Kilometerstand verwalten
-- Fahrzeug-Statistiken
-
-### Wartungen
-- Wartung erfassen (Datum, Kosten, Beschreibung)
-- Wartungshistorie pro Fahrzeug
-- Gesamtkosten berechnen
-- DatePicker für Datumswahl
-
-### Fahrten
-- Fahrt starten mit GPS-Tracking
-- Live-Distanzberechnung
-- Echtzeit-Timer
-- Fahrt beenden
-- Notizen zu Fahrten hinzufügen
-- Start/End GPS-Koordinaten
-- Geocoding für Adressen
-
-## 📦 Wichtige Dependencies
-
-```json
-{
-  "expo": "~54.0.23",
-  "react-native": "0.81.5",
-  "@react-navigation/native-stack": "^7.1.8",
-  "expo-location": "~18.0.4",
-  "expo-sqlite": "~15.0.3",
-  "date-fns": "^4.1.0",
-  "typescript": "~5.9.2"
-}
-```
-
-## 🔐 Berechtigungen
-
-### Android
-Automatisch in `app.json` konfiguriert:
-```json
-{
-  "permissions": [
-    "ACCESS_FINE_LOCATION",
-    "ACCESS_COARSE_LOCATION"
-  ]
-}
-```
-
-### iOS
-Automatisch in `app.json` konfiguriert:
-```json
-{
-  "infoPlist": {
-    "NSLocationWhenInUseUsageDescription": "Für GPS-Tracking von Fahrten"
-  }
-}
-```
-
-## 📊 Datenbank-Schema
-
-### Fahrzeuge Tabelle
-- id (INTEGER PRIMARY KEY)
-- marke (TEXT)
-- modell (TEXT)
-- kennzeichen (TEXT)
-- kilometerstand (REAL)
-- created_at (TEXT)
-
-### Wartungen Tabelle
-- id (INTEGER PRIMARY KEY)
-- fahrzeug_id (INTEGER)
-- typ (TEXT)
-- beschreibung (TEXT)
-- kosten (REAL)
-- datum (TEXT)
-- kilometerstand (REAL)
-
-### Fahrten Tabelle
-- id (INTEGER PRIMARY KEY)
-- fahrzeug_id (INTEGER)
-- start_zeit (TEXT)
-- end_zeit (TEXT)
-- distanz_km (REAL)
-- notizen (TEXT)
-- start_lat (REAL)
-- start_lon (REAL)
-- end_lat (REAL)
-- end_lon (REAL)
-
-## 🎨 UI/UX
-
-- **Material Design** inspirierte Komponenten
-- **Cards** für Listen-Items
-- **FloatingActionButton** für Haupt-Aktionen
-- **Modal Bottom Sheets** für Dialoge
-- **Live-Updates** während GPS-Tracking
-- **Loading States** und Error Handling
-- **Responsive Design**
-
-## 🔧 Entwicklung
-
-### Hot Reload
-- Änderungen werden automatisch aktualisiert
-- Shake-Geste (Gerät) für Dev-Menu
-- `Strg+M` (Android) oder `Cmd+D` (iOS) für Dev-Menu
-
-### Debugging
 ```bash
-# React Native Debugger
+# Development Server
 npm start
-# Dann im Dev-Menu "Debug" wählen
-```
 
-### TypeScript Check
-```bash
+# Mit Cache-Clear
+npx expo start -c
+
+# Spezifische Plattform
+npm run android
+npm run ios
+npm run web
+
+# TypeScript Check
 npx tsc --noEmit
-```
-
-## 📱 Build & Deployment
-
-### Development Build
-```bash
-npx expo install expo-dev-client
-eas build --profile development --platform android
-```
-
-### Production Build
-```bash
-eas build --platform android
-eas build --platform ios
-```
-
-### Over-the-Air Updates
-```bash
-eas update --branch production
 ```
 
 ## 🐛 Troubleshooting
 
-### GPS funktioniert nicht
-- Prüfe Berechtigungen
-- Location Services aktiviert?
-- Auf echtem Gerät testen (Simulator hat Einschränkungen)
-
-### Datenbank-Fehler
+### "Cannot connect to Metro"
 ```bash
-# App deinstallieren und neu installieren
-# Oder Cache löschen
 npx expo start -c
 ```
 
-### Dependencies-Fehler
+### "GPS funktioniert nicht"
+- Berechtigungen erlaubt?
+- Location Services aktiviert?
+- Auf echtem Gerät testen
+
+### "Datenbank-Fehler"
+```bash
+# App deinstallieren und neu installieren
+```
+
+### Dependencies fehlen
 ```bash
 rm -rf node_modules
 npm install
 npx expo start -c
 ```
 
-## 📚 Weitere Dokumentation
+## 💡 Tipps
 
-- [Expo Docs](https://docs.expo.dev)
-- [React Navigation](https://reactnavigation.org)
-- [Expo Location](https://docs.expo.dev/versions/latest/sdk/location/)
-- [Expo SQLite](https://docs.expo.dev/versions/latest/sdk/sqlite/)
-
-## 🎯 Mögliche Erweiterungen
-
-- Karten-Integration (Google Maps, Leaflet)
-- CSV/PDF Export für Fahrtenbuch
-- Cloud-Synchronisation
-- Push-Benachrichtigungen für Wartungen
-- Foto-Upload für Wartungen
-- Statistiken und Charts
+- **Dev-Menu**: Gerät schütteln oder `Cmd+D` (iOS) / `Ctrl+M` (Android)
+- **Reload**: `r` im Terminal drücken
+- **Clear Cache**: `npx expo start -c`
+- **TypeScript**: Nutze VS Code für IntelliSense
 
 ## 📄 Lizenz
 

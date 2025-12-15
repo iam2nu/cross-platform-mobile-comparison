@@ -17,7 +17,7 @@ Ein sicherer Passwort-Manager mit biometrischer Authentifizierung, entwickelt mi
 - **Auto-Lock**: Automatische Sperre nach Inaktivität
 - **Kopieren**: Username und Passwort in Zwischenablage
 
-## 🛠️ Technologie-Stack
+## 🛠️ Tech Stack
 
 - **Framework**: Expo SDK 54
 - **Sprache**: TypeScript 5.9
@@ -28,27 +28,59 @@ Ein sicherer Passwort-Manager mit biometrischer Authentifizierung, entwickelt mi
 - **Clipboard**: Expo Clipboard
 - **State**: React Hooks
 
-## 🚀 Installation & Start
+## 🚀 Quick Start
 
-### Voraussetzungen
-- Node.js (v18+)
-- Expo Go App (für Testing) oder
-- Development Build (für biometrische Auth)
+### 1. Dependencies installieren
 
-### Befehle
 ```bash
-# Dependencies installieren
+cd Expo/passworttresor
 npm install
-
-# Development Server starten
-npm start
-
-# Auf spezifischer Plattform
-npm run android    # Android
-npm run ios        # iOS (nur macOS)
 ```
 
+### 2. App starten
+
+```bash
+npm start
+```
+
+Dann wählen:
+- **Android**: Drücke `a` (Emulator) oder scanne QR-Code mit Expo Go
+- **iOS**: Drücke `i` (Simulator, nur macOS) oder scanne QR-Code
+- **Web**: Drücke `w`
+
 **Hinweis**: Biometrische Authentifizierung funktioniert nur in Development/Production Builds, nicht in Expo Go.
+
+### 3. Development Build für Biometrie
+
+```bash
+# Development Client installieren
+npx expo install expo-dev-client
+
+# Build erstellen
+eas build --profile development --platform android
+eas build --profile development --platform ios
+```
+
+## 📝 Verwendung
+
+### Erste Schritte
+
+1. **Master-Passwort erstellen** - Mindestens 6 Zeichen beim ersten Start
+2. **Ersten Eintrag hinzufügen** - `+` Button antippen
+3. **Passwort-Generator nutzen** - ✨ Icon im Passwort-Feld
+4. **Biometrische Auth aktivieren** - Beim nächsten Login
+
+### Passwort-Generator
+
+1. In "Neuer Eintrag" oder "Bearbeiten"
+2. ✨ Icon im Passwort-Feld antippen
+3. Optionen anpassen (Länge: 8-32 Zeichen)
+4. "Verwenden" antippen
+
+### Export/Import
+
+1. **Export**: Menü → Exportieren → JSON kopieren
+2. **Import**: Menü → Importieren → JSON einfügen → Bestätigen
 
 ## 📁 Projektstruktur
 
@@ -75,118 +107,25 @@ src/
     └── theme.ts
 ```
 
-## 🎯 Hauptfunktionen
+## 🔧 Wichtige Befehle
 
-### Authentifizierung
-- **Setup**: Master-Passwort erstellen beim ersten Start
-- **Login**: Mit Master-Passwort oder Biometrie
-- **Auto-Lock**: Automatische Sperre nach 5 Minuten Inaktivität
-
-### Credential-Verwaltung
-- **Erstellen**: Neuen Eintrag mit Titel, Username, Passwort, Notizen
-- **Bearbeiten**: Einträge nachträglich ändern
-- **Löschen**: Einträge entfernen mit Bestätigung
-- **Suchen**: Nach Titel oder Username suchen
-- **Favoriten**: Wichtige Einträge oben anzeigen
-- **Kopieren**: Username und Passwort mit einem Tap kopieren
-
-### Passwort-Generator
-- **Länge**: 8-32 Zeichen
-- **Optionen**:
-  - Großbuchstaben (A-Z)
-  - Kleinbuchstaben (a-z)
-  - Zahlen (0-9)
-  - Symbole (!@#$%^&*)
-- **Passwort-Stärke**: Live-Anzeige während Generierung
-- **Kryptographisch sicher**: Expo Crypto für Zufallszahlen
-
-### Passwort-Historie
-- **Automatische Speicherung**: Letzte 5 Passwörter pro Eintrag
-- **Wiederherstellung**: Altes Passwort wiederverwenden
-- **Anzeige**: Historie in separatem Modal
-
-### Export/Import
-- **Export**: Alle Daten als JSON exportieren
-- **Import**: Daten aus JSON wiederherstellen
-- **Format**: Strukturiertes JSON mit Versionierung
-
-## 📦 Wichtige Dependencies
-
-```json
-{
-  "expo": "~54.0.23",
-  "react-native": "0.81.5",
-  "expo-secure-store": "^15.0.7",
-  "expo-local-authentication": "^17.0.7",
-  "expo-crypto": "^15.0.7",
-  "expo-clipboard": "^8.0.7",
-  "typescript": "~5.9.2"
-}
-```
-
-## 🔐 Sicherheit
-
-### Implementierte Maßnahmen
-- ✅ SHA-256 Passwort-Hashing (Master-Passwort)
-- ✅ Verschlüsselte Speicherung (Expo Secure Store)
-- ✅ Biometrische Authentifizierung (native)
-- ✅ Auto-Lock nach Inaktivität
-- ✅ Keine Cloud-Speicherung
-- ✅ Keine Logs mit sensiblen Daten
-- ✅ Kryptographisch sichere Zufallszahlen
-
-### Sicherheitshinweise
-⚠️ **Wichtig**:
-- Master-Passwort gut merken (kein Recovery!)
-- Export-Daten sicher aufbewahren
-- App auf aktuellem Stand halten
-- Biometrische Daten bleiben auf Gerät
-
-## 🎨 UI/UX
-
-- **Farbschema**: Blau (#2196F3) als Primary Color
-- **Material Design** inspirierte Komponenten
-- **Modal Dialoge** für Aktionen
-- **Loading States** während Operationen
-- **Error Handling** mit Fehlermeldungen
-- **Passwort-Stärke-Indicator** mit Farben
-- **Smooth Animationen**
-- **Responsive Design**
-
-## 🔧 Entwicklung
-
-### Development Build erstellen
-Für biometrische Auth benötigt:
 ```bash
-# Development Client installieren
-npx expo install expo-dev-client
+# Development Server
+npm start
 
-# Build erstellen
-eas build --profile development --platform android
-eas build --profile development --platform ios
-```
+# Mit Cache-Clear
+npx expo start -c
 
-### Hot Reload
-- Änderungen werden automatisch aktualisiert
-- Shake-Geste für Dev-Menu
+# Spezifische Plattform
+npm run android
+npm run ios
 
-### TypeScript Check
-```bash
+# TypeScript Check
 npx tsc --noEmit
-```
 
-## 📱 Build & Deployment
-
-### Production Build
-```bash
+# Production Build
 eas build --platform android
 eas build --platform ios
-```
-
-### App Store Submission
-```bash
-eas submit --platform android
-eas submit --platform ios
 ```
 
 ## 🐛 Troubleshooting
@@ -212,52 +151,29 @@ npm install
 npx expo start -c
 ```
 
-## 💡 Verwendung
+## 💡 Tipps
 
-### Erste Schritte
-1. App starten
-2. Master-Passwort erstellen (min. 6 Zeichen)
-3. Ersten Eintrag hinzufügen (`+` Button)
-4. Passwort-Generator nutzen (✨ Icon)
-5. Biometrische Auth aktivieren (beim nächsten Login)
+- **Dev-Menu**: Gerät schütteln oder `Cmd+D` (iOS) / `Ctrl+M` (Android)
+- **Reload**: `r` im Terminal drücken
+- **Clear Cache**: `npx expo start -c`
+- **Biometrie testen**: Nur auf echten Geräten verfügbar
 
-### Passwort-Generator
-1. In "Neuer Eintrag" oder "Bearbeiten"
-2. ✨ Icon im Passwort-Feld antippen
-3. Optionen anpassen
-4. "Verwenden" antippen
+### Sicherheitshinweise
 
-### Export/Import
-1. **Export**: Menü → Exportieren → JSON kopieren
-2. **Import**: Menü → Importieren → JSON einfügen → Bestätigen
+⚠️ **Wichtig:**
+- Master-Passwort gut merken (kein Recovery!)
+- Export-Daten sicher aufbewahren
+- App auf aktuellem Stand halten
+- Biometrische Daten bleiben auf Gerät
 
-## 📚 Weitere Dokumentation
-
-- [Expo Docs](https://docs.expo.dev)
-- [Expo Secure Store](https://docs.expo.dev/versions/latest/sdk/securestore/)
-- [Expo Local Authentication](https://docs.expo.dev/versions/latest/sdk/local-authentication/)
-- [Expo Crypto](https://docs.expo.dev/versions/latest/sdk/crypto/)
-
-## 🎯 Mögliche Erweiterungen
-
-- Password Breach Check (Have I Been Pwned API)
-- 2FA Token Generator (TOTP)
-- Sichere Notizen
-- Datei-Anhänge
-- Cloud-Backup (verschlüsselt)
-- Browser-Extension
-- Dark Mode
-- Mehrsprachigkeit
-
-## 🆚 Vergleich mit anderen Frameworks
-
-| Feature | Expo | Flutter | Capacitor |
-|---------|------|---------|-----------|
-| Biometrische Auth | ✅ | ✅ | ⚠️ Plugin |
-| Verschlüsselte Storage | ✅ | ✅ | ✅ |
-| Passwort-Generator | ✅ | ✅ | ✅ |
-| Code-Komplexität | Mittel | Mittel | Mittel |
-| Performance | Gut | Sehr gut | Gut |
+**Implementierte Maßnahmen:**
+- SHA-256 Passwort-Hashing (Master-Passwort)
+- Verschlüsselte Speicherung (Expo Secure Store)
+- Biometrische Authentifizierung (native)
+- Auto-Lock nach Inaktivität
+- Keine Cloud-Speicherung
+- Keine Logs mit sensiblen Daten
+- Kryptographisch sichere Zufallszahlen
 
 ## 📄 Lizenz
 

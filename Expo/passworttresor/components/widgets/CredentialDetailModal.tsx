@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Alert,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 import { Ionicons } from '@expo/vector-icons';
@@ -18,6 +19,7 @@ interface CredentialDetailModalProps {
   visible: boolean;
   onClose: () => void;
   onToggleFavorite: (id: string) => void;
+  onInteraction?: () => void;
 }
 
 export default function CredentialDetailModal({
@@ -25,11 +27,13 @@ export default function CredentialDetailModal({
   visible,
   onClose,
   onToggleFavorite,
+  onInteraction,
 }: CredentialDetailModalProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [isEditing, setIsEditing] = useState(!credential || !credential.id);
 
   const copyToClipboard = async (text: string, label: string) => {
+    onInteraction?.();
     await Clipboard.setStringAsync(text);
     Alert.alert('Kopiert', `${label} wurde in die Zwischenablage kopiert`);
   };
@@ -67,104 +71,118 @@ export default function CredentialDetailModal({
 
   return (
     <Modal visible={visible} animationType="slide" transparent>
-      <View style={styles.overlay}>
-        <View style={styles.container}>
-          <View style={styles.header}>
-            <View style={styles.headerLeft}>
-              <Text style={styles.title}>{credential.title}</Text>
-            </View>
-            <View style={styles.headerActions}>
-              <TouchableOpacity
-                onPress={() => onToggleFavorite(credential.id)}
-                style={styles.iconButton}
-              >
-                <Ionicons
-                  name={credential.isFavorite ? 'star' : 'star-outline'}
-                  size={24}
-                  color={credential.isFavorite ? '#FFC107' : '#666'}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => setIsEditing(true)} style={styles.iconButton}>
-                <Ionicons name="create-outline" size={24} color="#666" />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={onClose} style={styles.iconButton}>
-                <Ionicons name="close" size={24} color="#666" />
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          <ScrollView style={styles.content}>
-            <View style={styles.field}>
-              <Text style={styles.label}>Benutzername</Text>
-              <View style={styles.valueContainer}>
-                <Text style={styles.value}>{credential.username}</Text>
-                <TouchableOpacity
-                  onPress={() => copyToClipboard(credential.username, 'Benutzername')}
-                  style={styles.copyButton}
-                >
-                  <Ionicons name="copy-outline" size={20} color="#2196F3" />
-                </TouchableOpacity>
+      <TouchableWithoutFeedback onPress={onInteraction}>
+        <View style={styles.overlay}>
+          <View style={styles.container}>
+            <View style={styles.header}>
+              <View style={styles.headerLeft}>
+                <Text style={styles.title}>{credential.title}</Text>
               </View>
-            </View>
-
-            <View style={styles.field}>
-              <Text style={styles.label}>Passwort</Text>
-              <View style={styles.valueContainer}>
-                <Text style={styles.value}>
-                  {showPassword ? credential.password : '•'.repeat(credential.password?.length || 0)}
-                </Text>
+              <View style={styles.headerActions}>
                 <TouchableOpacity
-                  onPress={() => setShowPassword(!showPassword)}
-                  style={styles.copyButton}
+                  onPress={() => {
+                    onInteraction?.();
+                    onToggleFavorite(credential.id);
+                  }}
+                  style={styles.iconButton}
                 >
                   <Ionicons
-                    name={showPassword ? 'eye-off-outline' : 'eye-outline'}
-                    size={20}
-                    color="#666"
+                    name={credential.isFavorite ? 'star' : 'star-outline'}
+                    size={24}
+                    color={credential.isFavorite ? '#FFC107' : '#666'}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => copyToClipboard(credential.password, 'Passwort')}
-                  style={styles.copyButton}
+                <TouchableOpacity 
+                  onPress={() => {
+                    onInteraction?.();
+                    setIsEditing(true);
+                  }} 
+                  style={styles.iconButton}
                 >
-                  <Ionicons name="copy-outline" size={20} color="#2196F3" />
+                  <Ionicons name="create-outline" size={24} color="#666" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={onClose} style={styles.iconButton}>
+                  <Ionicons name="close" size={24} color="#666" />
                 </TouchableOpacity>
               </View>
             </View>
 
-            {credential.url && (
+            <ScrollView style={styles.content}>
               <View style={styles.field}>
-                <Text style={styles.label}>URL</Text>
+                <Text style={styles.label}>Benutzername</Text>
                 <View style={styles.valueContainer}>
-                  <Text style={styles.value}>{credential.url}</Text>
+                  <Text style={styles.value}>{credential.username}</Text>
                   <TouchableOpacity
-                    onPress={() => copyToClipboard(credential.url!, 'URL')}
+                    onPress={() => copyToClipboard(credential.username, 'Benutzername')}
                     style={styles.copyButton}
                   >
                     <Ionicons name="copy-outline" size={20} color="#2196F3" />
                   </TouchableOpacity>
                 </View>
               </View>
-            )}
 
-            {credential.notes && (
               <View style={styles.field}>
-                <Text style={styles.label}>Notizen</Text>
-                <Text style={styles.value}>{credential.notes}</Text>
+                <Text style={styles.label}>Passwort</Text>
+                <View style={styles.valueContainer}>
+                  <Text style={styles.value}>
+                    {showPassword ? credential.password : '•'.repeat(credential.password?.length || 0)}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => {
+                      onInteraction?.();
+                      setShowPassword(!showPassword);
+                    }}
+                    style={styles.copyButton}
+                  >
+                    <Ionicons
+                      name={showPassword ? 'eye-off-outline' : 'eye-outline'}
+                      size={20}
+                      color="#666"
+                    />
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => copyToClipboard(credential.password, 'Passwort')}
+                    style={styles.copyButton}
+                  >
+                    <Ionicons name="copy-outline" size={20} color="#2196F3" />
+                  </TouchableOpacity>
+                </View>
               </View>
-            )}
 
-            <View style={styles.metadata}>
-              <Text style={styles.metadataText}>Erstellt: {formatDate(credential.createdAt)}</Text>
-              {credential.modifiedAt && (
-                <Text style={styles.metadataText}>
-                  Geändert: {formatDate(credential.modifiedAt)}
-                </Text>
+              {credential.url && (
+                <View style={styles.field}>
+                  <Text style={styles.label}>URL</Text>
+                  <View style={styles.valueContainer}>
+                    <Text style={styles.value}>{credential.url}</Text>
+                    <TouchableOpacity
+                      onPress={() => copyToClipboard(credential.url!, 'URL')}
+                      style={styles.copyButton}
+                    >
+                      <Ionicons name="copy-outline" size={20} color="#2196F3" />
+                    </TouchableOpacity>
+                  </View>
+                </View>
               )}
-            </View>
-          </ScrollView>
+
+              {credential.notes && (
+                <View style={styles.field}>
+                  <Text style={styles.label}>Notizen</Text>
+                  <Text style={styles.value}>{credential.notes}</Text>
+                </View>
+              )}
+
+              <View style={styles.metadata}>
+                <Text style={styles.metadataText}>Erstellt: {formatDate(credential.createdAt)}</Text>
+                {credential.modifiedAt && (
+                  <Text style={styles.metadataText}>
+                    Geändert: {formatDate(credential.modifiedAt)}
+                  </Text>
+                )}
+              </View>
+            </ScrollView>
+          </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 }

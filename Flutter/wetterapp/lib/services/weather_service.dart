@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer' as developer;
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../models/weather.dart';
@@ -104,7 +105,7 @@ class WeatherService {
               hourlyForecasts.add(hourly);
             }
           } catch (e) {
-            print('Error parsing hourly item: $e');
+            developer.log('Error parsing hourly item: $e', name: 'WeatherService');
             // Überspringe dieses Item und mache mit dem nächsten weiter
             continue;
           }
@@ -120,7 +121,7 @@ class WeatherService {
         );
       }
     } catch (e) {
-      print('getHourlyWeather error: $e');
+      developer.log('getHourlyWeather error: $e', name: 'WeatherService');
       throw Exception('Error fetching hourly weather: $e');
     }
   }
