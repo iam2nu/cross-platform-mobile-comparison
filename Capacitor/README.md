@@ -278,8 +278,10 @@ Network.addListener('networkStatusChange', status => {
 | UI | HTML/CSS | Widgets | Components |
 | Performance | Gut | Sehr gut | Gut |
 | Lernkurve | Flach | Mittel | Flach |
+| Community | Mittel | Groß | Sehr groß |
 | PWA Support | ✅ Exzellent | ❌ | ❌ |
-| Web-Integration | ✅ Perfekt | ❌ | ❌ |
+| OTA Updates | ✅ | ❌ | ✅ |
+| Web-Kenntnisse | ✅ | ❌ | ✅ |
 
 ## ✅ Wann Capacitor verwenden?
 

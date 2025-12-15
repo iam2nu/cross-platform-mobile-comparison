@@ -231,11 +231,14 @@ class _MyWidgetState extends State<MyWidget> {
 | Feature | Flutter | Expo | Capacitor |
 |---------|---------|------|-----------|
 | Sprache | Dart | JS/TS | JS/TS |
-| UI | Widgets | Components | Components |
-| Performance | Sehr gut | Gut | Mittel-Gut |
+| Web-Support | ⚠️ Separat | ⚠️ Begrenzt | ✅ Nativ |
+| UI | Widgets | Components | HTML/CSS |
+| Performance | Sehr gut | Gut | Gut |
 | Lernkurve | Mittel | Flach | Flach |
 | Community | Groß | Sehr groß | Mittel |
-| App-Größe | ~20MB | ~15MB | ~15MB |
+| PWA Support | ❌ | ❌ | ✅ Exzellent |
+| OTA Updates | ❌ | ✅ | ✅ |
+| Web-Kenntnisse | ❌ | ✅ | ✅ |
 
 ## ✅ Wann Flutter verwenden?
 
@@ -269,6 +272,11 @@ class _MyWidgetState extends State<MyWidget> {
 - [Flutter Samples](https://flutter.github.io/samples/)
 - [Flutter Widget Catalog](https://docs.flutter.dev/ui/widgets)
 
+### Tools
+- [Flutter DevTools](https://docs.flutter.dev/tools/devtools)
+- [Flutter CLI](https://docs.flutter.dev/reference/flutter-cli)
+- [Dart Packages](https://pub.dev)
+
 ## 🎯 Nächste Schritte
 
 1. **Flutter installieren** - `flutter doctor` ausführen
@@ -281,3 +289,17 @@ class _MyWidgetState extends State<MyWidget> {
 - [autologbuch/README.md](autologbuch/README.md)
 - [wetterapp/README.md](wetterapp/README.md)
 - [passworttresor/README.md](passworttresor/README.md)
+
+## 💡 Tipps
+
+### Entwicklung
+- **Hot Reload** - Nutze Hot Reload für schnelle Entwicklungszyklen
+- **Widget Inspector** - Verwende DevTools für UI-Debugging
+- **Flutter Doctor** - Prüfe regelmäßig mit `flutter doctor`
+- **Profiling** - Nutze Performance Overlay für Optimierung
+
+### Deployment
+- **App Stores** - Native Builds für iOS/Android
+- **Code Signing** - Konfiguriere früh für iOS/Android
+- **Versioning** - Nutze build numbers in pubspec.yaml
+- **Release Builds** - Teste immer Release-Mode vor Veröffentlichung

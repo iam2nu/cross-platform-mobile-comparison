@@ -255,10 +255,12 @@ const location = await Location.getCurrentPositionAsync({});
 | Feature | Expo | Flutter | Capacitor |
 |---------|------|---------|-----------|
 | Sprache | JS/TS | Dart | JS/TS |
-| UI | Components | Widgets | Components |
-| Performance | Gut | Sehr gut | Mittel-Gut |
+| Web-Support | ⚠️ Begrenzt | ⚠️ Separat | ✅ Nativ |
+| UI | Components | Widgets | HTML/CSS |
+| Performance | Gut | Sehr gut | Gut |
 | Lernkurve | Flach | Mittel | Flach |
 | Community | Sehr groß | Groß | Mittel |
+| PWA Support | ❌ | ❌ | ✅ Exzellent |
 | OTA Updates | ✅ | ❌ | ✅ |
 | Web-Kenntnisse | ✅ | ❌ | ✅ |
 
@@ -313,3 +315,17 @@ const location = await Location.getCurrentPositionAsync({});
 - [autologbuch/README.md](autologbuch/README.md)
 - [wetterapp/README.md](wetterapp/README.md)
 - [passworttresor/README.md](passworttresor/README.md)
+
+## 💡 Tipps
+
+### Entwicklung
+- **Expo Go** - Nutze Expo Go für schnelles Testen
+- **Hot Reload** - Fast Refresh beschleunigt Entwicklung
+- **Tunnel Mode** - Verwende bei Netzwerkproblemen
+- **DevTools** - React DevTools für Component-Debugging
+
+### Deployment
+- **EAS Build** - Cloud-Builds für iOS ohne Mac
+- **OTA Updates** - Schnelle Fixes ohne App Store Review
+- **Expo Snack** - Teile Code-Snippets online
+- **App Stores** - Nutze EAS Submit für Deployment
