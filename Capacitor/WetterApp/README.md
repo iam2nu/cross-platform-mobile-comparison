@@ -12,7 +12,7 @@ Eine moderne Wetter-App mit OpenWeatherMap API, entwickelt mit Capacitor, Ionic 
 - **Pull-to-Refresh** zum Aktualisieren der Daten
 - **State Management** mit Zustand
 - **Performance-optimiert** mit effizienten Scroll-Listen
-- **Responsive Design** für alle Bildschirmgrößen
+- **Responsive Design** für alle Bildschirmgrössen
 
 ## 🛠️ Tech Stack
 
@@ -203,7 +203,7 @@ npx cap sync
 ## 💡 Tipps
 
 - **Hot Reload**: Änderungen werden automatisch im Browser aktualisiert
-- **Capacitor Sync**: Nach größeren Änderungen `npm run sync` ausführen
+- **Capacitor Sync**: Nach grösseren Änderungen `npm run sync` ausführen
 - **API-Limit**: Kostenloser Plan hat 60 Calls/Minute Limit
 - **Offline-Modus**: App speichert letzte Daten im Cache
 

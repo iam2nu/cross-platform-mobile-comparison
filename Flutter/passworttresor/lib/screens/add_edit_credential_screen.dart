@@ -109,7 +109,7 @@ class _AddEditCredentialScreenState extends State<AddEditCredentialScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Schließen'),
+            child: const Text('Schliessen'),
           ),
         ],
       ),

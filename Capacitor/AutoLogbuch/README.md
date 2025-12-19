@@ -191,7 +191,7 @@ npx cap sync
 ## 💡 Tipps
 
 - **Hot Reload**: Änderungen im Code werden automatisch im Browser aktualisiert
-- **Capacitor Sync**: Nach größeren Änderungen immer `npm run sync` ausführen
+- **Capacitor Sync**: Nach grösseren Änderungen immer `npm run sync` ausführen
 - **GPS im Browser**: Funktioniert nur über HTTPS oder localhost
 - **Native Features**: Manche Features (GPS im Hintergrund) funktionieren nur in nativen Apps
 

@@ -170,15 +170,15 @@ Sicherer Passwort-Manager mit:
 - ✅ Umfangreiche Widget-Bibliothek
 
 **Nachteile:**
-- ❌ Größere App-Größe
+- ❌ Grössere App-Grösse
 - ❌ Steilere Lernkurve
 - ❌ Kleinere Community als React
 
 ### Expo (React Native)
 **Vorteile:**
 - ✅ Web-Developer-freundlich
-- ✅ Größte Community
-- ✅ Großes NPM-Ökosystem
+- ✅ Grössere Community
+- ✅ Grosses NPM-Ökosystem
 - ✅ OTA-Updates möglich
 - ✅ Schnelle Entwicklung
 
@@ -237,7 +237,7 @@ Geschätzte Entwicklungszeit pro App:
 Alle Apps verwenden ähnliche Designs:
 - **Primary Color:** Blau (#2196F3)
 - **Material Design** inspiriert
-- **Responsive** für verschiedene Bildschirmgrößen
+- **Responsive** für verschiedene Bildschirmgrössen
 - **Konsistente Navigation**
 
 ## 🔐 Sicherheit
@@ -269,7 +269,7 @@ Jedes Framework hat zusätzlich:
 - Team mit React/Web-Erfahrung
 - Schnelle Entwicklung wichtig
 - OTA-Updates benötigt
-- Großes NPM-Ökosystem gewünscht
+- Grosses NPM-Ökosystem gewünscht
 
 ### Wann Capacitor?
 - Bestehende Web-App vorhanden

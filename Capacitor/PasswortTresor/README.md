@@ -95,7 +95,7 @@ npx cap open ios
 ### Passwort-Generator
 
 - **Länge**: 8-32 Zeichen
-- **Optionen**: Groß-/Kleinbuchstaben, Zahlen, Symbole
+- **Optionen**: Gross-/Kleinbuchstaben, Zahlen, Symbole
 - **Passwort-Stärke**: Live-Anzeige mit Farben
 - **Kryptographisch sicher**: Crypto.getRandomValues()
 
@@ -185,7 +185,7 @@ Preferences werden bei Deinstallation gelöscht. Vorher exportieren!
 - Export-Daten sicher aufbewahren
 - Keine Biometrische Auth in dieser Version
 
-**Implementierte Maßnahmen:**
+**Implementierte Massnahmen:**
 - SHA-256 Passwort-Hashing
 - Verschlüsselte Speicherung (Capacitor Preferences)
 - Kein Cloud-Speicher

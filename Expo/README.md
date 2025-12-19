@@ -36,7 +36,7 @@ Sicherer Passwort-Manager mit biometrischer Authentifizierung und verschlüsselt
 - **EAS Update** für OTA-Updates
 
 ### Community
-- **Größte React Native Community**
+- **Grösste React Native Community**
 - **Viele Tutorials und Ressourcen**
 - **Aktive Entwicklung** durch Expo-Team
 - **React-Kenntnisse übertragbar**
@@ -454,7 +454,7 @@ const location = await Location.getCurrentPositionAsync({});
 | UI | Components | Widgets | HTML/CSS |
 | Performance | Gut | Sehr gut | Gut |
 | Lernkurve | Flach | Mittel | Flach |
-| Community | Sehr groß | Groß | Mittel |
+| Community | Sehr gross | Gross | Mittel |
 | PWA Support | ❌ | ❌ | ✅ Exzellent |
 | OTA Updates | ✅ | ❌ | ✅ |
 | Web-Kenntnisse | ✅ | ❌ | ✅ |
@@ -472,7 +472,7 @@ const location = await Location.getCurrentPositionAsync({});
 - Apps mit vielen Custom Native Modules
 - Sehr performance-kritische Apps (Gaming)
 - Apps mit komplexen Animationen
-- Wenn minimale App-Größe kritisch ist
+- Wenn minimale App-Grösse kritisch ist
 
 ## 📚 Ressourcen
 

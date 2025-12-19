@@ -60,7 +60,7 @@ Wähle dann:
 ### Passwort-Generator
 
 - Länge: 4-64 Zeichen
-- Optionen: Groß-/Kleinbuchstaben, Zahlen, Symbole
+- Optionen: Gross-/Kleinbuchstaben, Zahlen, Symbole
 - Live Passwort-Stärke-Anzeige
 - Kryptographisch sicher (Random.secure)
 
@@ -148,7 +148,7 @@ flutter run
 - Export-Daten sicher aufbewahren
 - Biometrische Auth als Backup zu Master-Passwort
 
-**Implementierte Maßnahmen:**
+**Implementierte Massnahmen:**
 - SHA-256 Passwort-Hashing
 - Verschlüsselte Speicherung (Keychain/Keystore)
 - Biometrische Authentifizierung

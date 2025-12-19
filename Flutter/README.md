@@ -337,7 +337,7 @@ class _MyWidgetState extends State<MyWidget> {
 | UI | Widgets | Components | HTML/CSS |
 | Performance | Sehr gut | Gut | Gut |
 | Lernkurve | Mittel | Flach | Flach |
-| Community | Groß | Sehr groß | Mittel |
+| Community | Gross | Sehr gross | Mittel |
 | PWA Support | ❌ | ❌ | ✅ Exzellent |
 | OTA Updates | ❌ | ✅ | ✅ |
 | Web-Kenntnisse | ❌ | ✅ | ✅ |
@@ -355,7 +355,7 @@ class _MyWidgetState extends State<MyWidget> {
 - Sehr einfache Apps (Overhead)
 - Teams nur mit Web-Erfahrung
 - Projekte mit vielen plattform-spezifischen Features
-- Wenn App-Größe kritisch ist
+- Wenn App-Grösse kritisch ist
 
 ## 📚 Ressourcen
 
@@ -397,7 +397,7 @@ class _MyWidgetState extends State<MyWidget> {
 ### Entwicklung
 - **Hot Reload** - Nutze Hot Reload für schnelle Entwicklungszyklen
 - **Widget Inspector** - Verwende DevTools für UI-Debugging
-- **Flutter Doctor** - Prüfe regelmäßig mit `flutter doctor`
+- **Flutter Doctor** - Prüfe regelmässig mit `flutter doctor`
 - **Profiling** - Nutze Performance Overlay für Optimierung
 
 ### Deployment

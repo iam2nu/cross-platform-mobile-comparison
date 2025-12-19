@@ -243,7 +243,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('Schließen'),
+              child: const Text('Schliessen'),
             ),
             ElevatedButton.icon(
               icon: const Icon(Icons.copy),

@@ -351,7 +351,7 @@ console.log(position.coords.latitude);
 - Erstelle wiederverwendbare Components
 
 ### Performance
-- Optimiere Bundle-Größe (Tree Shaking)
+- Optimiere Bundle-Grösse (Tree Shaking)
 - Lazy-Load Routes und Components
 - Verwende Ionic Virtual Scroll für lange Listen
 - Minimiere Re-Renders mit React.memo
@@ -403,7 +403,7 @@ Network.addListener('networkStatusChange', status => {
 | UI | HTML/CSS | Widgets | Components |
 | Performance | Gut | Sehr gut | Gut |
 | Lernkurve | Flach | Mittel | Flach |
-| Community | Mittel | Groß | Sehr groß |
+| Community | Mittel | Gross | Sehr gross |
 | PWA Support | ✅ Exzellent | ❌ | ❌ |
 | OTA Updates | ✅ | ❌ | ✅ |
 | Web-Kenntnisse | ✅ | ❌ | ✅ |
@@ -467,7 +467,7 @@ Network.addListener('networkStatusChange', status => {
 
 ### Entwicklung
 - **Browser-first** - Entwickle primär im Browser
-- **Native testen** - Teste regelmäßig auf echten Geräten
+- **Native testen** - Teste regelmässig auf echten Geräten
 - **Hot Reload** - Nutze Vite für schnelle Iteration
 - **DevTools** - Chrome DevTools für Debugging
 

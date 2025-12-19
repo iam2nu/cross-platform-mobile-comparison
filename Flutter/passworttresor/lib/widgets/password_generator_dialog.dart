@@ -134,7 +134,7 @@ class _PasswordGeneratorDialogState extends State<PasswordGeneratorDialog> {
               },
             ),
             CheckboxListTile(
-              title: const Text('Großbuchstaben (A-Z)'),
+              title: const Text('Grossbuchstaben (A-Z)'),
               value: _includeUppercase,
               onChanged: (value) {
                 setState(() {

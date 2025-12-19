@@ -123,7 +123,7 @@ export default function PasswordGeneratorModal({
             </View>
 
             <View style={styles.option}>
-              <Text style={styles.optionLabel}>Großbuchstaben (A-Z)</Text>
+              <Text style={styles.optionLabel}>Grossbuchstaben (A-Z)</Text>
               <Switch
                 value={includeUppercase}
                 onValueChange={setIncludeUppercase}

@@ -117,7 +117,7 @@ export default function ExportImportModal({
 
           <View style={styles.footer}>
             <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-              <Text style={styles.closeButtonText}>Schließen</Text>
+              <Text style={styles.closeButtonText}>Schliessen</Text>
             </TouchableOpacity>
           </View>
         </View>

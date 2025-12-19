@@ -207,7 +207,7 @@ npx expo start -c
 - App auf aktuellem Stand halten
 - Biometrische Daten bleiben auf Gerät
 
-**Implementierte Maßnahmen:**
+**Implementierte Massnahmen:**
 - SHA-256 Passwort-Hashing (Master-Passwort)
 - Verschlüsselte Speicherung (Expo Secure Store)
 - Biometrische Authentifizierung (native)
