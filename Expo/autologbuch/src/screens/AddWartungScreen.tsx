@@ -151,7 +151,7 @@ export default function AddWartungScreen({ route, navigation }: Props) {
                                 placeholderTextColor={theme.colors.textSecondary}
                                 keyboardType="decimal-pad"
                             />
-                            <Text style={styles.suffix}>€</Text>
+                            <Text style={styles.suffix}>CHF</Text>
                         </View>
                         {errors.kosten && <Text style={styles.errorText}>{errors.kosten}</Text>}
                     </View>

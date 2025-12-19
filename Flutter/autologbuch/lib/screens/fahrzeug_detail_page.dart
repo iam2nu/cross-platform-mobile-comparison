@@ -17,7 +17,10 @@ class FahrzeugDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dateFormat = DateFormat('dd.MM.yyyy');
-    final currencyFormat = NumberFormat.currency(locale: 'de_DE', symbol: '€');
+    final currencyFormat = NumberFormat.currency(
+      locale: 'de_DE',
+      symbol: 'CHF',
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -157,7 +160,9 @@ class FahrzeugDetailPage extends StatelessWidget {
                         leading: CircleAvatar(
                           child: Icon(
                             Icons.build,
-                            color: Theme.of(context).colorScheme.onPrimaryContainer,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onPrimaryContainer,
                           ),
                         ),
                         title: Text(
@@ -168,9 +173,7 @@ class FahrzeugDetailPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const SizedBox(height: 4),
-                            Text(
-                              'Datum: ${dateFormat.format(eintrag.datum)}',
-                            ),
+                            Text('Datum: ${dateFormat.format(eintrag.datum)}'),
                             Text(
                               'Kilometerstand: ${eintrag.kilometerstand.toString()} km',
                             ),

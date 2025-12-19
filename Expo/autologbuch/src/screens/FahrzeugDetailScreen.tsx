@@ -64,9 +64,9 @@ export default function FahrzeugDetailScreen({ route, navigation }: Props) {
     };
 
     const formatCurrency = (value: number) => {
-        return new Intl.NumberFormat('de-DE', {
+        return new Intl.NumberFormat('de-CH', {
             style: 'currency',
-            currency: 'EUR',
+            currency: 'CHF',
         }).format(value);
     };
 

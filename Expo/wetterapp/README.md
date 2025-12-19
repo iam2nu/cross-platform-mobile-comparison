@@ -18,7 +18,7 @@ Eine moderne Wetter-App mit OpenWeatherMap API, entwickelt mit Expo und React Na
 - **Sprache**: TypeScript 5.9
 - **UI**: React Native Components
 - **State**: Zustand (State Management Library)
-- **HTTP**: Axios für API-Calls
+- **HTTP**: Fetch API
 - **API**: OpenWeatherMap API
 
 ## 🚀 Quick Start
@@ -32,8 +32,17 @@ npm install
 
 ### 2. API Key konfigurieren
 
-API Key ist bereits in `src/services/weatherService.ts` konfiguriert.
-Für eigenen Key: Registriere dich auf https://openweathermap.org/api
+1. Erstelle `.env` Datei im Projekt-Root:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Trage deinen API Key ein:
+   ```
+   EXPO_PUBLIC_WEATHER_API_KEY=dein_api_key_hier
+   ```
+
+3. Registriere dich auf https://openweathermap.org/api für einen kostenlosen Key
 
 ### 3. App starten
 
@@ -76,19 +85,26 @@ src/
 │   ├── CurrentWeatherWidget.tsx
 │   ├── WeatherForecastWidget.tsx
 │   ├── HourlyWeatherWidget.tsx
-│   └── SearchBar.tsx
+│   ├── SearchBar.tsx
+│   ├── PopularCities.tsx
+│   └── index.ts
 ├── models/                   # TypeScript Interfaces
 │   ├── Weather.ts
 │   ├── WeatherForecast.ts
-│   └── HourlyWeather.ts
+│   ├── HourlyWeather.ts
+│   └── index.ts
 ├── services/                 # API Services
-│   └── weatherService.ts
+│   ├── weatherService.ts
+│   └── index.ts
 ├── store/                    # State Management
-│   └── weatherStore.ts
+│   ├── weatherStore.ts
+│   └── index.ts
 ├── screens/                  # Screen Components
-│   └── WeatherScreen.tsx
+│   ├── WeatherScreen.tsx
+│   └── index.ts
 └── theme/                    # Design Tokens
-    └── theme.ts
+    ├── theme.ts
+    └── index.ts
 ```
 
 ## 🔧 Wichtige Befehle

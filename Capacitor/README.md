@@ -82,6 +82,131 @@ Sicherer Passwort-Manager mit verschlüsselter Speicherung und Ionic UI Componen
 - **Forms** - Input, Select, Checkbox
 - **Modals & Alerts** - Dialoge
 
+## 💻 Systemvoraussetzungen
+
+### Minimum
+- **Betriebssystem**: Windows 10/11, macOS 10.15+, oder Linux (Ubuntu 18.04+)
+- **RAM**: 8 GB
+- **Speicherplatz**: 10 GB frei
+- **Node.js**: 18.x oder höher
+- **npm**: 9.x oder höher
+
+### Empfohlen
+- **RAM**: 16 GB oder mehr
+- **Speicherplatz**: 20 GB+ frei
+- **Node.js**: Latest LTS (20.x)
+- **SSD**: Für bessere Build-Performance
+
+### Plattform-spezifische Tools
+
+#### Für Android-Entwicklung
+- **Android Studio**: Latest stable version
+- **Android SDK**: API Level 24 (Android 7.0) oder höher
+- **JDK**: Version 17 oder höher
+- **Gradle**: 8.0+ (automatisch)
+
+#### Für iOS-Entwicklung (nur macOS)
+- **Xcode**: 14.0 oder höher
+- **CocoaPods**: Für Dependencies
+- **macOS**: 12.0 (Monterey) oder höher
+
+#### Für Web-Entwicklung
+- **Chrome/Firefox/Edge**: Latest version
+- **Web Server**: Integriert in Vite
+
+### Installation
+
+#### 1. Node.js installieren
+
+**Windows:**
+```bash
+# Download von https://nodejs.org
+# Installer ausführen
+# Nach Installation:
+node --version
+npm --version
+```
+
+**macOS:**
+```bash
+# Mit Homebrew:
+brew install node
+
+# Oder Download von https://nodejs.org
+```
+
+**Linux:**
+```bash
+# Ubuntu/Debian:
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Verifizieren:
+node --version
+npm --version
+```
+
+#### 2. Ionic CLI installieren
+
+```bash
+npm install -g @ionic/cli
+ionic --version
+```
+
+#### 3. Capacitor CLI installieren (optional)
+
+```bash
+npm install -g @capacitor/cli
+cap --version
+```
+
+#### 4. Android Studio einrichten
+
+1. Download: https://developer.android.com/studio
+2. Android SDK installieren
+3. Environment Variables setzen:
+   - **ANDROID_HOME**: Pfad zum Android SDK
+   - **JAVA_HOME**: Pfad zum JDK
+4. Emulator erstellen (optional)
+
+**Windows Environment Variables:**
+```bash
+ANDROID_HOME=C:\Users\[USERNAME]\AppData\Local\Android\Sdk
+JAVA_HOME=C:\Program Files\Android\Android Studio\jbr
+```
+
+**macOS/Linux:**
+```bash
+# In ~/.bash_profile oder ~/.zshrc:
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+```
+
+#### 5. Xcode einrichten (nur macOS)
+
+```bash
+# Xcode installieren (über App Store)
+xcode-select --install
+
+# CocoaPods:
+sudo gem install cocoapods
+
+# Verifizieren:
+pod --version
+```
+
+#### 6. Editor einrichten
+
+**VS Code (empfohlen):**
+```bash
+# Extensions installieren:
+# - Ionic
+# - Capacitor
+# - TypeScript
+# - ESLint
+```
+
 ## 📦 Installation & Setup
 
 ### Voraussetzungen

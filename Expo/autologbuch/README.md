@@ -78,14 +78,15 @@ Die App fragt automatisch nach GPS-Berechtigungen beim ersten Start einer Fahrt.
 
 ```
 src/
+├── database/                 # SQLite Datenbank
+│   └── database.ts
 ├── models/                   # TypeScript Interfaces
 │   ├── Fahrzeug.ts
 │   ├── Wartung.ts
-│   └── Fahrt.ts
-├── database/                 # SQLite Datenbank
-│   └── database.ts
-├── services/                 # Business Logic
-│   └── LocationService.ts
+│   ├── Fahrt.ts
+│   └── index.ts
+├── navigation/               # Navigation Setup
+│   └── AppNavigator.tsx
 ├── screens/                  # Screen Components
 │   ├── HomeScreen.tsx
 │   ├── AddFahrzeugScreen.tsx
@@ -94,8 +95,8 @@ src/
 │   ├── FahrtenListScreen.tsx
 │   ├── ActiveFahrtScreen.tsx
 │   └── FahrtDetailScreen.tsx
-├── navigation/               # Navigation Setup
-│   └── AppNavigator.tsx
+├── services/                 # Business Logic
+│   └── locationService.ts
 └── theme/                    # Design System
     └── theme.ts
 ```

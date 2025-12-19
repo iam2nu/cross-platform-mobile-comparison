@@ -78,6 +78,13 @@ const FahrzeugDetailPage: React.FC = () => {
         });
     };
 
+    const formatCurrency = (value: number) => {
+        return new Intl.NumberFormat('de-CH', {
+            style: 'currency',
+            currency: 'CHF',
+        }).format(value);
+    };
+
     const totalKosten = wartungen.reduce((sum, w) => sum + w.kosten, 0);
 
     if (!fahrzeug) {
@@ -98,7 +105,7 @@ const FahrzeugDetailPage: React.FC = () => {
                 {/* Zusammenfassung Gesamtkosten im Stil der Flutter-Karte */}
                 <div className="summary-container">
                     <div className="summary-title">Gesamtkosten</div>
-                    <div className="summary-value">CHF {totalKosten.toFixed(2)}</div>
+                    <div className="summary-value">{formatCurrency(totalKosten)}</div>
                 </div>
                 <IonCard>
                     <IonCardHeader>
@@ -120,7 +127,7 @@ const FahrzeugDetailPage: React.FC = () => {
                             )}
                             <IonItem lines="none">
                                 <IonLabel>Gesamtkosten</IonLabel>
-                                <IonNote slot="end">CHF {totalKosten.toFixed(2)}</IonNote>
+                                <IonNote slot="end">{formatCurrency(totalKosten)}</IonNote>
                             </IonItem>
                         </IonList>
                     </IonCardContent>
@@ -202,7 +209,7 @@ const FahrzeugDetailPage: React.FC = () => {
                                             <p>Kilometerstand: {wartung.kilometerstand.toLocaleString('de-DE')} km</p>
                                         </IonLabel>
                                         <IonNote slot="end" style={{ fontSize: '16px', fontWeight: 700 }}>
-                                            CHF {wartung.kosten.toFixed(2)}
+                                            {formatCurrency(wartung.kosten)}
                                         </IonNote>
                                     </IonItem>
                                 ))}

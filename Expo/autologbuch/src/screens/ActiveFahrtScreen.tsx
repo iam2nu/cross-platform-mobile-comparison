@@ -169,11 +169,18 @@ export default function ActiveFahrtScreen({ route, navigation }: Props) {
                     text: 'Beenden',
                     onPress: async () => {
                         try {
-                            // Hole Endadresse
-                            const endAddress = await locationService.getAddressFromCoordinates(
-                                currentPosition.latitude,
-                                currentPosition.longitude
-                            );
+                            // Hole Endadresse (mit Fehlerbehandlung)
+                            let endAddress: string | undefined;
+                            try {
+                                const address = await locationService.getAddressFromCoordinates(
+                                    currentPosition.latitude,
+                                    currentPosition.longitude
+                                );
+                                endAddress = address || undefined;
+                            } catch (addressError) {
+                                console.warn('Could not get end address:', addressError);
+                                endAddress = undefined;
+                            }
 
                             await database.endFahrt(
                                 currentFahrt.id,
@@ -181,7 +188,7 @@ export default function ActiveFahrtScreen({ route, navigation }: Props) {
                                 currentPosition.latitude,
                                 currentPosition.longitude,
                                 currentDistanz,
-                                endAddress || undefined
+                                endAddress
                             );
 
                             navigation.goBack();

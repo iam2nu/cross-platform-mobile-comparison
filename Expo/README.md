@@ -74,6 +74,201 @@ Sicherer Passwort-Manager mit biometrischer Authentifizierung und verschlüsselt
 - **React Navigation** - Routing Library
 - **Expo Router** - File-based Routing (Alternative)
 
+## 💻 Systemvoraussetzungen
+
+### Minimum
+- **Betriebssystem**: Windows 10/11, macOS 10.15+, oder Linux (Ubuntu 18.04+)
+- **RAM**: 8 GB
+- **Speicherplatz**: 10 GB frei
+- **Node.js**: 18.x oder höher
+- **npm**: 9.x oder höher
+
+### Empfohlen
+- **RAM**: 16 GB oder mehr
+- **Speicherplatz**: 20 GB+ frei
+- **Node.js**: Latest LTS (20.x)
+- **SSD**: Für bessere Build-Performance
+
+### Für Testing
+
+#### Expo Go App (Einfachste Methode)
+- **Android**: Expo Go aus [Google Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent)
+- **iOS**: Expo Go aus [App Store](https://apps.apple.com/app/expo-go/id982107779)
+- **Wichtig**: PC und Smartphone müssen im **gleichen WLAN** sein!
+
+#### Development Builds (Für native Features)
+- Erforderlich für: Biometrische Auth, Push Notifications, etc.
+- **Android Studio**: Für Android-Builds
+- **Xcode**: Für iOS-Builds (nur macOS)
+
+### Plattform-spezifische Tools
+
+#### Für Android-Entwicklung (Optional)
+- **Android Studio**: Latest stable version
+- **Android SDK**: API Level 21 (Android 5.0) oder höher
+- **JDK**: Version 17 oder höher
+- Nur nötig für: Development Builds, native Modules
+
+#### Für iOS-Entwicklung (nur macOS, Optional)
+- **Xcode**: 14.0 oder höher
+- **CocoaPods**: Für Dependencies
+- **macOS**: 12.0 (Monterey) oder höher
+- Nur nötig für: Development Builds, native Modules
+
+#### Für Web-Entwicklung
+- **Chrome/Firefox/Edge**: Latest version
+- **react-dom**: Für Web-Support
+- **react-native-web**: Für Web-Support
+
+### Installation
+
+#### 1. Node.js installieren
+
+**Windows:**
+```bash
+# Download von https://nodejs.org
+# Installer ausführen (LTS Version empfohlen)
+# Nach Installation verifizieren:
+node --version  # Sollte v18.x oder höher sein
+npm --version   # Sollte v9.x oder höher sein
+```
+
+**macOS:**
+```bash
+# Mit Homebrew (empfohlen):
+brew install node
+
+# Oder Download von https://nodejs.org
+# Verifizieren:
+node --version
+npm --version
+```
+
+**Linux:**
+```bash
+# Ubuntu/Debian:
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Verifizieren:
+node --version
+npm --version
+```
+
+#### 2. Expo CLI installieren (Optional, aber empfohlen)
+
+```bash
+npm install -g expo-cli
+
+# Verifizieren:
+expo --version
+```
+
+**Alternativ (ohne globale Installation):**
+```bash
+# npx verwenden:
+npx expo --version
+```
+
+#### 3. Expo Go App installieren
+
+Auf deinem Smartphone:
+- **Android**: [Google Play Store → "Expo Go"](https://play.google.com/store/apps/details?id=host.exp.exponent)
+- **iOS**: [App Store → "Expo Go"](https://apps.apple.com/app/expo-go/id982107779)
+
+#### 4. EAS CLI installieren (Für Production Builds, Optional)
+
+```bash
+npm install -g eas-cli
+
+# Login (Expo Account benötigt):
+eas login
+```
+
+#### 5. Android Studio einrichten (Optional)
+
+Nur wenn du Development Builds oder native Module brauchst:
+
+1. Download: https://developer.android.com/studio
+2. Android SDK installieren (API Level 34 empfohlen)
+3. Environment Variables setzen:
+
+**Windows:**
+```bash
+ANDROID_HOME=C:\Users\[USERNAME]\AppData\Local\Android\Sdk
+```
+
+**macOS/Linux:**
+```bash
+# In ~/.bash_profile oder ~/.zshrc:
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+```
+
+4. Emulator erstellen (optional)
+
+#### 6. Xcode einrichten (nur macOS, Optional)
+
+Nur für iOS Development Builds:
+
+```bash
+# Xcode installieren (über App Store)
+xcode-select --install
+
+# CocoaPods installieren:
+sudo gem install cocoapods
+pod --version
+```
+
+#### 7. Editor einrichten
+
+**VS Code (empfohlen):**
+```bash
+# Extensions installieren:
+# - React Native Tools
+# - ES7+ React/Redux/React-Native snippets
+# - TypeScript
+# - ESLint
+```
+
+### Quick Start ohne Installation
+
+Für schnelles Testen ohne lokale Installation:
+
+1. **Snack**: https://snack.expo.dev
+   - Online-Editor im Browser
+   - Direkt auf Smartphone testen mit Expo Go
+   - Keine Installation nötig
+
+### Troubleshooting Installation
+
+#### Node.js Version zu alt
+```bash
+# Aktuelle Version prüfen:
+node --version
+
+# Wenn < 18.x, Node.js aktualisieren:
+# Windows/macOS: Neuen Installer von nodejs.org
+# Linux: nvm verwenden
+```
+
+#### npm Berechtigungsfehler (Linux/macOS)
+```bash
+# npm Prefix ändern:
+mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
+echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.profile
+source ~/.profile
+```
+
+#### Port bereits in Verwendung
+```bash
+# Standardport (8081) wird benutzt?
+# Anderen Port verwenden:
+npx expo start --port 8082
+```
+
 ## 📦 Installation & Setup
 
 ### Voraussetzungen

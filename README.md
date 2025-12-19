@@ -13,6 +13,73 @@ Jedes Framework wurde anhand von drei verschiedenen Beispiel-Apps evaluiert:
 2. **WetterApp** - Wetter-Anzeige mit API-Integration
 3. **PasswortTresor** - Passwort-Manager mit Verschlüsselung
 
+## 💻 Systemvoraussetzungen
+
+### Allgemein (für alle Frameworks)
+
+- **Betriebssystem**: Windows 10/11, macOS 10.15+, oder Linux
+- **RAM**: Mindestens 8 GB (16 GB empfohlen)
+- **Speicherplatz**: Mindestens 10 GB frei
+- **Internet**: Für Downloads und Package-Installation
+
+### Framework-spezifische Anforderungen
+
+#### Flutter
+- **Flutter SDK**: 3.0.0 oder höher
+- **Dart SDK**: 3.0.0 oder höher (im Flutter SDK enthalten)
+- **Android Studio**: Für Android-Entwicklung
+- **Xcode**: Für iOS-Entwicklung (nur macOS)
+- **Git**: Für Flutter Installation
+
+#### Expo (React Native)
+- **Node.js**: 18.x oder höher
+- **npm**: 9.x oder höher (mit Node.js)
+- **Expo Go App**: Auf Smartphone für Testing
+- **Android Studio**: Für Android-Builds (optional)
+- **Xcode**: Für iOS-Builds (nur macOS, optional)
+
+#### Capacitor
+- **Node.js**: 18.x oder höher
+- **npm**: 9.x oder höher
+- **Android Studio**: Für Android-Entwicklung
+- **Xcode**: Für iOS-Entwicklung (nur macOS)
+- **Chrome/Firefox**: Für Web-Entwicklung
+
+### Geräte zum Testen
+
+- **Android**: Physisches Gerät oder Emulator (API Level 21+)
+- **iOS**: iPhone/iPad oder Simulator (iOS 12+, nur macOS)
+- **Web**: Moderner Browser (Chrome, Firefox, Safari, Edge)
+
+### Installation der Tools
+
+#### Node.js installieren
+```bash
+# Download von https://nodejs.org
+# Nach Installation prüfen:
+node --version
+npm --version
+```
+
+#### Flutter installieren
+```bash
+# Download von https://flutter.dev/docs/get-started/install
+# Nach Installation prüfen:
+flutter doctor
+```
+
+#### Android Studio installieren
+- Download: https://developer.android.com/studio
+- Android SDK installieren
+- Emulator einrichten
+
+#### Xcode installieren (nur macOS)
+- Über Mac App Store
+- Command Line Tools installieren:
+  ```bash
+  xcode-select --install
+  ```
+
 ## 📁 Projektstruktur
 
 ```
@@ -138,19 +205,19 @@ Sicherer Passwort-Manager mit:
 ### Flutter
 - **Sprache:** Dart
 - **UI:** Material Design Widgets
-- **State:** StatefulWidget, Provider
+- **State:** Provider
 - **Build:** Flutter CLI
 
 ### Expo
 - **Sprache:** TypeScript/JavaScript
 - **UI:** React Native Components
-- **State:** React Hooks
+- **State:** React Hooks, Zustand
 - **Build:** Expo CLI
 
 ### Capacitor
 - **Sprache:** TypeScript
 - **UI:** Ionic React Components
-- **State:** React Hooks
+- **State:** React Hooks, Zustand
 - **Build:** Vite
 
 ## 📈 Entwicklungszeit-Vergleich

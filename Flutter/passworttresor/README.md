@@ -86,21 +86,19 @@ Wähle dann:
 lib/
 ├── main.dart                 # Entry Point
 ├── models/                   # Datenmodelle
-│   ├── credential.dart
-│   └── settings.dart
-├── services/                 # Business Logic
-│   ├── storage_service.dart
-│   ├── crypto_service.dart
-│   ├── biometric_service.dart
-│   └── password_generator.dart
+│   └── credential.dart
 ├── screens/                  # UI Screens
 │   ├── setup_screen.dart
 │   ├── auth_screen.dart
-│   └── home_screen.dart
+│   ├── home_screen.dart
+│   └── add_edit_credential_screen.dart
+├── services/                 # Business Logic
+│   ├── secure_storage_service.dart
+│   ├── auth_service.dart
+│   ├── password_generator_service.dart
+│   └── auto_lock_service.dart
 └── widgets/                  # UI Components
-    ├── credential_modal.dart
-    ├── password_generator_modal.dart
-    └── password_history_modal.dart
+    └── password_generator_dialog.dart
 ```
 
 ## 🔧 Wichtige Befehle

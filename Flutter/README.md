@@ -73,6 +73,108 @@ Sicherer Passwort-Manager mit biometrischer Authentifizierung.
 - **http** / **dio** - HTTP-Requests
 - **sqflite** - SQLite Datenbank
 
+## 💻 Systemvoraussetzungen
+
+### Minimum
+- **Betriebssystem**: Windows 10/11, macOS 10.15+, oder Linux (Ubuntu 18.04+)
+- **RAM**: 8 GB
+- **Speicherplatz**: 10 GB frei
+- **Flutter SDK**: 3.0.0 oder höher
+- **Dart SDK**: 3.0.0+ (im Flutter SDK enthalten)
+
+### Empfohlen
+- **RAM**: 16 GB oder mehr
+- **Speicherplatz**: 20 GB+ frei (für Android SDK, Emulatoren)
+- **SSD**: Für bessere Performance
+
+### Plattform-spezifische Tools
+
+#### Für Android-Entwicklung
+- **Android Studio**: Latest stable version
+- **Android SDK**: API Level 21 (Android 5.0) oder höher
+- **JDK**: Version 11 oder höher
+- **Android Emulator**: Optional, aber empfohlen
+
+#### Für iOS-Entwicklung (nur macOS)
+- **Xcode**: 13.0 oder höher
+- **CocoaPods**: Für Dependencies
+- **iOS Simulator**: Im Xcode enthalten
+- **macOS**: 11.0 (Big Sur) oder höher
+
+#### Für Web-Entwicklung
+- **Chrome** oder **Edge**: Latest version
+
+### Installation
+
+#### 1. Flutter SDK installieren
+
+**Windows:**
+```bash
+# Download von https://flutter.dev/docs/get-started/install/windows
+# Extrahieren und zu PATH hinzufügen
+```
+
+**macOS:**
+```bash
+# Mit Homebrew:
+brew install flutter
+
+# Oder Manual Download:
+# https://flutter.dev/docs/get-started/install/macos
+```
+
+**Linux:**
+```bash
+# Download von https://flutter.dev/docs/get-started/install/linux
+sudo snap install flutter --classic
+```
+
+#### 2. Flutter Setup verifizieren
+```bash
+flutter doctor
+```
+
+Dieser Befehl prüft:
+- ✅ Flutter SDK installiert
+- ✅ Android Studio / Android SDK
+- ✅ Xcode (macOS)
+- ✅ VS Code / Android Studio Plugins
+- ✅ Connected Devices
+
+#### 3. Android Studio einrichten
+
+1. Download: https://developer.android.com/studio
+2. Android SDK installieren (API Level 34 empfohlen)
+3. Flutter Plugin installieren
+4. Dart Plugin installieren
+5. Emulator erstellen (optional)
+
+#### 4. Xcode einrichten (nur macOS)
+
+```bash
+# Xcode installieren (über App Store)
+# Command Line Tools:
+sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+sudo xcodebuild -runFirstLaunch
+
+# CocoaPods installieren:
+sudo gem install cocoapods
+```
+
+#### 5. Editor einrichten
+
+**VS Code:**
+```bash
+# Flutter Extension installieren
+# Dart Extension installieren
+```
+
+**Android Studio:**
+```bash
+# Plugins → Flutter installieren
+# Plugins → Dart installieren
+```
+
 ## 📦 Installation & Setup
 
 ### Voraussetzungen

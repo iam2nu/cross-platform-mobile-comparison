@@ -45,7 +45,9 @@
           "locationWhenInUsePermission": "Diese App benötigt Ihren Standort, um Fahrten aufzuzeichnen."
         }
       ],
-      "expo-sqlite"
+      "expo-sqlite",
+      "expo-router",
+      "expo-web-browser"
     ],
     "extra": {
       "eas": {

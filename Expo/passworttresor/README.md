@@ -28,6 +28,48 @@ Ein sicherer Passwort-Manager mit biometrischer Authentifizierung, entwickelt mi
 - **Clipboard**: Expo Clipboard
 - **State**: React Hooks
 
+## 💻 Systemvoraussetzungen
+
+### Minimum
+- **Node.js**: 18.x oder höher
+- **npm**: 9.x oder höher
+- **Expo Go App**: Auf Smartphone (für Entwicklung)
+- **Smartphone**: Android 5.0+ oder iOS 12+
+- **WLAN**: PC und Smartphone im gleichen Netzwerk
+
+### Empfohlen
+- **Node.js**: 20.x (Latest LTS)
+- **RAM**: 8 GB
+- **Betriebssystem**: Windows 10+, macOS 10.15+, Linux
+
+### Für biometrische Authentifizierung
+**Wichtig**: Biometrie funktioniert **nicht** in Expo Go!
+
+Für biometrische Auth benötigt:
+- **Development Build** oder **Production Build**
+- **Gerät mit Biometrie**: Face ID, Touch ID, oder Fingerabdruck
+- **Android Studio** (für Android Build)
+- **Xcode** (für iOS Build, nur macOS)
+
+### Installation der Voraussetzungen
+
+#### 1. Node.js
+```bash
+# Download: https://nodejs.org (LTS Version)
+# Nach Installation:
+node --version  # Sollte v18+ sein
+npm --version   # Sollte v9+ sein
+```
+
+#### 2. Expo Go App
+- **Android**: [Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent)
+- **iOS**: [App Store](https://apps.apple.com/app/expo-go/id982107779)
+
+#### 3. Optional: Expo CLI
+```bash
+npm install -g expo-cli
+```
+
 ## 🚀 Quick Start
 
 ### 1. Dependencies installieren
@@ -85,26 +127,25 @@ eas build --profile development --platform ios
 ## 📁 Projektstruktur
 
 ```
-src/
 ├── models/                   # TypeScript Interfaces
-│   ├── Credential.ts
-│   └── Settings.ts
-├── services/                 # Business Logic
-│   ├── StorageService.ts
-│   ├── CryptoService.ts
-│   ├── PasswordGeneratorService.ts
-│   └── BiometricService.ts
+│   └── Credential.ts
 ├── screens/                  # Screen Components
 │   ├── SetupScreen.tsx
 │   ├── AuthScreen.tsx
-│   └── HomeScreen.tsx
+│   ├── HomeScreen.tsx
+│   └── AddEditCredentialScreen.tsx
+├── services/                 # Business Logic
+│   ├── SecureStorageService.ts
+│   ├── AuthService.ts
+│   ├── PasswordGeneratorService.ts
+│   └── AutoLockService.ts
 ├── components/               # UI Components
-│   ├── CredentialModal.tsx
-│   ├── PasswordGeneratorModal.tsx
-│   ├── PasswordHistoryModal.tsx
-│   └── SettingsModal.tsx
-└── theme/                    # Design System
-    └── theme.ts
+│   └── widgets/
+│       ├── CredentialDetailModal.tsx
+│       ├── PasswordGeneratorModal.tsx
+│       ├── ExportImportModal.tsx
+│       └── SettingsModal.tsx
+└── theme/                    # Design System (if exists)
 ```
 
 ## 🔧 Wichtige Befehle

@@ -17,9 +17,75 @@ Eine moderne Wetter-App mit OpenWeatherMap API, entwickelt mit Flutter.
 - **Framework**: Flutter 3.x
 - **Sprache**: Dart 3.x
 - **HTTP**: http Package für API-Calls
-- **State**: Provider / StatefulWidget
+- **State**: Provider
 - **UI**: Material Design Widgets
 - **API**: OpenWeatherMap API
+- **Env**: flutter_dotenv für Umgebungsvariablen
+
+## 💻 Systemvoraussetzungen
+
+### Minimum
+- **Flutter SDK**: 3.0.0 oder höher
+- **Dart SDK**: 3.0.0+ (im Flutter SDK enthalten)
+- **Betriebssystem**: Windows 10+, macOS 10.15+, Linux Ubuntu 18.04+
+- **RAM**: 8 GB
+- **Speicherplatz**: 10 GB frei
+- **OpenWeatherMap API Key**: Kostenlos von https://openweathermap.org/api
+
+### Empfohlen
+- **Flutter SDK**: Latest stable
+- **RAM**: 16 GB
+- **SSD**: Für bessere Performance
+
+### Für Android-Entwicklung
+- **Android Studio**: Latest stable
+- **Android SDK**: API Level 21+ (Android 5.0+)
+- **JDK**: Version 11+
+- **Android Emulator**: Optional
+
+### Für iOS-Entwicklung (nur macOS)
+- **Xcode**: 13.0+
+- **CocoaPods**: Latest
+- **macOS**: 11.0+ (Big Sur)
+- **iOS Simulator**: Im Xcode enthalten
+
+### Installation der Voraussetzungen
+
+#### 1. Flutter SDK installieren
+
+**Windows:**
+```bash
+# Download: https://flutter.dev/docs/get-started/install/windows
+# Zu PATH hinzufügen
+# Verifizieren:
+flutter doctor
+```
+
+**macOS:**
+```bash
+# Mit Homebrew:
+brew install flutter
+
+# Verifizieren:
+flutter doctor
+```
+
+**Linux:**
+```bash
+sudo snap install flutter --classic
+flutter doctor
+```
+
+#### 2. Flutter Doctor ausführen
+```bash
+flutter doctor
+```
+Dieser Befehl zeigt, was noch installiert werden muss.
+
+#### 3. OpenWeatherMap API Key
+1. Registrieren: https://openweathermap.org/api
+2. Kostenlosen API Key generieren
+3. In `.env` Datei eintragen (siehe unten)
 
 ## 🚀 Quick Start
 
@@ -32,8 +98,17 @@ flutter pub get
 
 ### 2. API Key konfigurieren
 
-API Key ist bereits in `lib/services/weather_service.dart` konfiguriert.
-Für eigenen Key: Registriere dich auf https://openweathermap.org/api
+1. Kopiere `.env.example` zu `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Trage deinen OpenWeatherMap API Key in `.env` ein:
+   ```
+   API_KEY=dein_api_key_hier
+   ```
+
+3. Hole dir einen kostenlosen API Key von: https://openweathermap.org/api
 
 ### 3. App starten
 
@@ -66,15 +141,17 @@ lib/
 │   ├── weather.dart
 │   ├── weather_forecast.dart
 │   └── hourly_weather.dart
+├── providers/                # State Management
+│   └── weather_provider.dart
 ├── services/                 # API Services
 │   └── weather_service.dart
 ├── screens/                  # UI Screens
 │   └── weather_screen.dart
 └── widgets/                  # UI Components
     ├── current_weather_widget.dart
-    ├── forecast_widget.dart
+    ├── weather_forecast_widget.dart
     ├── hourly_weather_widget.dart
-    └── search_bar_widget.dart
+    └── performance_optimized_list_view.dart
 ```
 
 ## 🔧 Wichtige Befehle

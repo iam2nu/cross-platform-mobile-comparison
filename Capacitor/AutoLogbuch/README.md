@@ -43,9 +43,21 @@ Die App läuft auf `http://localhost:5173`
 
 #### Android
 
+**Schritt 1: Android-Plattform hinzufügen**
+```bash
+# Android-Plattform hinzufügen (beim ersten Mal erforderlich)
+npx cap add android
+
+# Build erstellen
+npm run build
+
+# Zu Android syncen
+npx cap sync
+```
+
 **⚠️ WICHTIG: Java-Version**
 
-Aktuell ist Java 25 installiert, aber Gradle unterstützt dies noch nicht. Verwende Java 17 oder 21:
+Gradle benötigt Java 17 oder 21 (Java 25 wird noch nicht unterstützt):
 
 **Lösung 1: Java 17 installieren (empfohlen)**
 1. Download: https://adoptium.net/temurin/releases/?version=17
@@ -62,22 +74,25 @@ npm run open:android
 ```
 Android Studio verwendet automatisch die richtige Java-Version.
 
-**Nach Java-Installation:**
+**Schritt 2: App starten**
 ```bash
-# Gradle Cache löschen
-Remove-Item -Recurse -Force "$env:USERPROFILE\.gradle\caches"
-
-# Android App starten
+# Option 1: Direkt auf Gerät/Emulator
 npm run android
+
+# Option 2: Via Android Studio
+npm run open:android
 ```
 
 #### iOS (nur auf macOS)
 
 ```bash
-# iOS hinzufügen
+# iOS-Plattform hinzufügen (beim ersten Mal erforderlich)
 npx cap add ios
 
-# Projekt syncen
+# Build erstellen
+npm run build
+
+# Zu iOS syncen
 npx cap sync
 
 # Xcode öffnen
@@ -108,19 +123,25 @@ Info.plist enthält bereits die benötigten Permission-Strings.
 
 ```
 src/
-├── models/           # TypeScript Interfaces (Fahrzeug, Wartung, Fahrt)
+├── models/           # TypeScript Interfaces
+│   ├── Fahrzeug.ts
+│   ├── Wartung.ts
+│   ├── Fahrt.ts
+│   └── index.ts
+├── pages/            # Ionic Pages
+│   ├── HomePage.tsx
+│   ├── AddFahrzeugPage.tsx
+│   ├── FahrzeugDetailPage.tsx
+│   ├── AddWartungPage.tsx
+│   ├── FahrtenListPage.tsx
+│   ├── ActiveFahrtPage.tsx
+│   └── FahrtDetailPage.tsx
 ├── services/         # Business Logic
-│   ├── database.service.ts    # Datenbank-Operationen
-│   └── location.service.ts    # GPS-Tracking
-├── pages/            # 7 Ionic Pages
-│   ├── HomePage.tsx              # Fahrzeugliste
-│   ├── AddFahrzeugPage.tsx       # Fahrzeug hinzufügen
-│   ├── FahrzeugDetailPage.tsx    # Fahrzeugdetails
-│   ├── AddWartungPage.tsx        # Wartung hinzufügen
-│   ├── FahrtenListPage.tsx       # Fahrtenliste
-│   ├── ActiveFahrtPage.tsx       # Live GPS-Tracking
-│   └── FahrtDetailPage.tsx       # Fahrtdetails
-├── theme/            # Ionic CSS Variables
+│   ├── database.service.ts
+│   └── location.service.ts
+├── theme/            # Styling
+│   ├── variables.css
+│   └── global.css
 ├── App.tsx           # Main App Component
 └── main.tsx          # Entry Point
 ```

@@ -74,20 +74,16 @@ Wähle dann:
 ```
 lib/
 ├── main.dart                 # Entry Point
-├── models/                   # Datenmodelle
-│   ├── fahrzeug.dart
-│   ├── wartung.dart
-│   └── fahrt.dart
 ├── database/                 # Drift Datenbank
 │   └── database.dart
 ├── screens/                  # UI Screens
-│   ├── home_screen.dart
-│   ├── fahrzeug_detail_screen.dart
-│   ├── add_fahrzeug_screen.dart
-│   ├── add_wartung_screen.dart
-│   ├── fahrten_list_screen.dart
-│   ├── active_fahrt_screen.dart
-│   └── fahrt_detail_screen.dart
+│   ├── home_page.dart
+│   ├── fahrzeug_detail_page.dart
+│   ├── add_fahrzeug_page.dart
+│   ├── add_wartung_page.dart
+│   ├── fahrten_list_page.dart
+│   ├── active_fahrt_page.dart
+│   └── fahrt_detail_page.dart
 └── services/                 # Business Logic
     └── location_service.dart
 ```

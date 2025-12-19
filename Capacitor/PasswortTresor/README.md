@@ -48,7 +48,7 @@ npm run dev
 #### Android
 
 ```bash
-# Plattform hinzufügen (einmalig)
+# Android-Plattform hinzufügen (beim ersten Mal erforderlich)
 npx cap add android
 
 # Build erstellen
@@ -69,7 +69,7 @@ In Android Studio:
 #### iOS (nur macOS)
 
 ```bash
-# Plattform hinzufügen (einmalig)
+# iOS-Plattform hinzufügen (beim ersten Mal erforderlich)
 npx cap add ios
 
 # Build erstellen
@@ -111,16 +111,19 @@ src/
 ├── models/                   # Datenmodelle
 │   ├── Credential.ts
 │   └── Settings.ts
-├── services/                 # Business Logic
-│   ├── StorageService.ts
-│   ├── CryptoService.ts
-│   └── PasswordGeneratorService.ts
 ├── pages/                    # Ionic Pages
 │   ├── SetupPage.tsx
 │   ├── AuthPage.tsx
 │   └── HomePage.tsx
 ├── components/               # Wiederverwendbare Komponenten
-│   └── CredentialModal.tsx
+│   ├── CredentialModal.tsx
+│   ├── ExportImportModal.tsx
+│   └── SettingsModal.tsx
+├── services/                 # Business Logic
+│   ├── StorageService.ts
+│   ├── CryptoService.ts
+│   ├── PasswordGeneratorService.ts
+│   └── AutoLockService.ts
 ├── theme/                    # Styling
 │   ├── variables.css
 │   └── global.css

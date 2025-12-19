@@ -9,9 +9,8 @@ import {
     HourlyWeatherApiItem,
     parseHourlyWeather,
 } from '../models';
-import { WEATHER_API_KEY } from '@env';
 
-const API_KEY = WEATHER_API_KEY;
+const API_KEY = process.env.EXPO_PUBLIC_WEATHER_API_KEY;
 const BASE_URL = 'https://api.openweathermap.org/data/2.5';
 
 export class WeatherService {

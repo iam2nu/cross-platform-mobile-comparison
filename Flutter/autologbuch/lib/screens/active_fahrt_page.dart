@@ -20,7 +20,7 @@ class ActiveFahrtPage extends StatefulWidget {
   State<ActiveFahrtPage> createState() => _ActiveFahrtPageState();
 }
 
-class _ActiveFahrtPageState extends State<ActiveFahrtPage> {
+class _ActiveFahrtPageState extends State<ActiveFahrtPage> with WidgetsBindingObserver {
   final LocationService _locationService = LocationService();
   StreamSubscription<Position>? _positionSubscription;
 
@@ -33,14 +33,23 @@ class _ActiveFahrtPageState extends State<ActiveFahrtPage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _initializeFahrt();
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _positionSubscription?.cancel();
     _timer?.cancel();
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    debugPrint('App lifecycle state: $state');
+    // GPS-Tracking läuft auch im Hintergrund weiter
+    // Aber UI-Updates passieren nur wenn App im Vordergrund ist
   }
 
   Future<void> _initializeFahrt() async {
@@ -55,6 +64,15 @@ class _ActiveFahrtPageState extends State<ActiveFahrtPage> {
         _currentFahrt = activeFahrt;
         _currentDistanz = activeFahrt.distanzKm;
       });
+      
+      // WICHTIG: Hole aktuelle Position für fortgesetzte Fahrt
+      Position? position = await _locationService.getCurrentPosition();
+      if (position != null) {
+        setState(() {
+          _currentPosition = position;
+        });
+      }
+      
       _startTimer();
       _startLocationTracking();
     } else {
@@ -127,9 +145,26 @@ class _ActiveFahrtPageState extends State<ActiveFahrtPage> {
   }
 
   void _startLocationTracking() {
+    debugPrint('=== Starting GPS tracking ===');
     _positionSubscription = _locationService.getPositionStream().listen(
       (Position position) {
-        if (_currentPosition != null) {
+        debugPrint('GPS Position empfangen: ${position.latitude}, ${position.longitude}, Accuracy: ${position.accuracy}m');
+        
+        // Wenn keine vorherige Position existiert, setze die aktuelle als Startpunkt
+        if (_currentPosition == null) {
+          debugPrint('Initial GPS position set');
+          if (mounted) {
+            setState(() {
+              _currentPosition = position;
+            });
+          } else {
+            _currentPosition = position;
+          }
+          return; // Warte auf nächstes Update für Distanzberechnung
+        }
+        
+        // Ab jetzt haben wir eine vorherige Position
+        if (_currentFahrt != null) {
           // Berechne Distanz seit letztem Update
           double distanzDelta = _locationService.calculateDistance(
             _currentPosition!.latitude,
@@ -138,20 +173,60 @@ class _ActiveFahrtPageState extends State<ActiveFahrtPage> {
             position.longitude,
           );
 
-          setState(() {
-            _currentPosition = position;
-            _currentDistanz += distanzDelta;
-          });
+          debugPrint('Distanz Delta: ${distanzDelta.toStringAsFixed(4)} km (${(distanzDelta * 1000).toStringAsFixed(1)}m)');
+
+          // Nur aktualisieren wenn signifikante Bewegung (mind. 2 Meter)
+          if (distanzDelta > 0.002) {
+            final newDistanz = _currentDistanz + distanzDelta;
+            
+            debugPrint('✓ GPS Update: +${distanzDelta.toStringAsFixed(3)} km, Total: ${newDistanz.toStringAsFixed(2)} km');
+            
+            // Aktualisiere Distanz in Datenbank (funktioniert auch im Hintergrund)
+            widget.database.fahrtDao.updateFahrt(
+              _currentFahrt!.id,
+              FahrtenCompanion(
+                distanzKm: drift.Value(newDistanz),
+              ),
+            ).then((_) {
+              debugPrint('Database updated successfully');
+            }).catchError((error) {
+              debugPrint('Database update error: $error');
+            });
+            
+            // UI-Update nur wenn App im Vordergrund ist
+            if (mounted) {
+              setState(() {
+                _currentPosition = position;
+                _currentDistanz = newDistanz;
+              });
+              debugPrint('UI updated (app in foreground)');
+            } else {
+              // Im Hintergrund: nur Daten aktualisieren ohne setState
+              _currentPosition = position;
+              _currentDistanz = newDistanz;
+              debugPrint('Data updated (app in background)');
+            }
+          } else {
+            debugPrint('Movement too small, skipping update');
+            // Position aktualisieren ohne Distanzänderung
+            if (mounted) {
+              setState(() {
+                _currentPosition = position;
+              });
+            } else {
+              _currentPosition = position;
+            }
+          }
         } else {
-          setState(() {
-            _currentPosition = position;
-          });
+          debugPrint('Warning: No active Fahrt found!');
         }
       },
       onError: (error) {
-        debugPrint('Location tracking error: $error');
+        debugPrint('❌ Location tracking error: $error');
       },
+      cancelOnError: false,
     );
+    debugPrint('GPS tracking subscription created');
   }
 
   Future<void> _endFahrt() async {

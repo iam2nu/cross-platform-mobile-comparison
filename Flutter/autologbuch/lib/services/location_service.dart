@@ -1,3 +1,4 @@
+import 'dart:io' show Platform;
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:geocoding/geocoding.dart';
@@ -8,8 +9,8 @@ class LocationService {
   factory LocationService() => _instance;
   LocationService._internal();
 
-  // Prüfe und fordere Standort-Berechtigung an
-  Future<bool> requestLocationPermission() async {
+  // Prüfe und fordere Standort-Berechtigung an (inkl. Hintergrund)
+  Future<bool> requestLocationPermission({bool requestBackground = true}) async {
     // Prüfe ob Location Services aktiviert sind
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
@@ -30,6 +31,12 @@ class LocationService {
       // Öffne App-Einstellungen
       await openAppSettings();
       return false;
+    }
+
+    // Fordere Hintergrund-Berechtigung an (für kontinuierliches Tracking)
+    if (requestBackground && permission == LocationPermission.whileInUse) {
+      // Versuche auf "always" zu upgraden
+      permission = await Geolocator.requestPermission();
     }
 
     return true;
@@ -53,15 +60,38 @@ class LocationService {
     }
   }
 
-  // Stream für kontinuierliche Standort-Updates
+  // Stream für kontinuierliche Standort-Updates (auch im Hintergrund)
   Stream<Position> getPositionStream() {
-    return Geolocator.getPositionStream(
-      locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.high,
-        distanceFilter: 10, // Update alle 10 Meter
-        timeLimit: Duration(seconds: 5), // Update mindestens alle 5 Sekunden
-      ),
-    );
+    if (Platform.isAndroid) {
+      return Geolocator.getPositionStream(
+        locationSettings: AndroidSettings(
+          accuracy: LocationAccuracy.high,
+          distanceFilter: 5,
+          intervalDuration: const Duration(seconds: 5),
+          foregroundNotificationConfig: const ForegroundNotificationConfig(
+            notificationText: "Fahrt wird aufgezeichnet",
+            notificationTitle: "Autologbuch",
+            enableWakeLock: false, // Deaktiviert wegen Permission-Problem
+          ),
+        ),
+      );
+    } else if (Platform.isIOS) {
+      return Geolocator.getPositionStream(
+        locationSettings: AppleSettings(
+          accuracy: LocationAccuracy.high,
+          distanceFilter: 5,
+          pauseLocationUpdatesAutomatically: false,
+          showBackgroundLocationIndicator: true,
+        ),
+      );
+    } else {
+      return Geolocator.getPositionStream(
+        locationSettings: const LocationSettings(
+          accuracy: LocationAccuracy.high,
+          distanceFilter: 5,
+        ),
+      );
+    }
   }
 
   // Berechne Distanz zwischen zwei Punkten (in km)

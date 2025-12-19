@@ -21,7 +21,7 @@ Eine moderne Wetter-App mit OpenWeatherMap API, entwickelt mit Capacitor, Ionic 
 - **State Management**: Zustand 4.5
 - **Mobile Runtime**: Capacitor 6.0
 - **HTTP Client**: Axios 1.6
-- **Build Tool**: Vite 5.0
+- **Build Tool**: Vite 7.3
 - **Language**: TypeScript 5.3
 - **API**: OpenWeatherMap API
 
@@ -61,6 +61,18 @@ npm run dev
 
 #### Auf Android
 
+**Erste Schritte:**
+```powershell
+# Android-Plattform hinzufügen (einmalig)
+npx cap add android
+
+# Build erstellen
+npm run build
+
+# Zu Android syncen
+npx cap sync
+```
+
 **Option 1: Android Studio öffnen**
 ```powershell
 npm run open:android
@@ -79,6 +91,16 @@ npm run android
 #### Auf iOS (nur macOS)
 
 ```powershell
+# iOS-Plattform hinzufügen (einmalig)
+npx cap add ios
+
+# Build erstellen
+npm run build
+
+# Zu iOS syncen
+npx cap sync
+
+# Xcode öffnen
 npm run open:ios
 ```
 
@@ -101,21 +123,23 @@ src/
 │   ├── CurrentWeather.tsx
 │   ├── WeatherForecastComponent.tsx
 │   ├── HourlyWeatherComponent.tsx
-│   └── SearchBar.tsx
+│   ├── SearchBar.tsx
+│   └── PopularCities.tsx
 ├── models/              # TypeScript Models
 │   ├── Weather.ts
 │   ├── WeatherForecast.ts
 │   └── HourlyWeather.ts
+├── screens/             # Screen Components
+│   └── WeatherScreen.tsx
 ├── services/            # API Services
 │   └── weatherService.ts
 ├── store/               # State Management
 │   └── weatherStore.ts
-├── screens/             # Screen Components
-│   └── WeatherScreen.tsx
 ├── theme/               # Theme & Styling
 │   └── variables.css
 ├── App.tsx              # Main App Component
-└── main.tsx             # Entry Point
+├── main.tsx             # Entry Point
+└── vite-env.d.ts        # Vite Types
 ```
 
 ## 🔧 Wichtige Befehle

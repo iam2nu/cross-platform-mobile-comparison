@@ -1,0 +1,19 @@
+{
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.import.exclusions": [
+    "**/Capacitor/**/android/**",
+    "**/Flutter/**/android/**",
+    "**/Expo/**/android/**",
+    "**/node_modules/**",
+    "**/build/**"
+  ],
+  "java.configuration.updateBuildConfiguration": "disabled",
+  "cmake.ignoreCMakeListsMissing": true,
+  "files.exclude": {
+    "**/node_modules": false
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/build": true
+  }
+}
