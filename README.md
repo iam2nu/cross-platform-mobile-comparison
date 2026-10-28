@@ -1,5 +1,9 @@
 # Optionen für plattformübergreifende Mobilapplikationen
 
+## Über dieses Projekt
+
+Projektarbeit im Bachelorstudium Informatik an der ZHAW School of Engineering (Herbst 2025, Note 5.5). Ich habe dieselben drei Apps je einmal in Flutter, Expo (React Native) und Capacitor umgesetzt, insgesamt also neun Apps, und die Frameworks anhand von Entwicklungsaufwand, Code-Qualität, Performance, Developer Experience und Feature-Parität verglichen.
+
 ## Projekt-Übersicht
 
 Dieses Projekt vergleicht drei führende Cross-Platform-Frameworks für die Entwicklung mobiler Anwendungen:
